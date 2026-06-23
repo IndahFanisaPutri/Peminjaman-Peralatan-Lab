@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PeminjamanAlat;
+use App\Models\AlatLaboratorium;
 use Illuminate\Http\Request;
 
 class PeminjamanAlatController extends Controller
@@ -54,6 +56,37 @@ class PeminjamanAlatController extends Controller
             ->with('success', 'Pengajuan peminjaman berhasil dikirim');
     }
 
+    public function setujui($id)
+    {
+        $peminjaman = \App\Models\PeminjamanAlat::findOrFail($id);
+
+        $alat = \App\Models\AlatLaboratorium::findOrFail($peminjaman->alat_id);
+
+        // kurangi stok
+        if ($alat->jumlah_tersedia >= $peminjaman->jumlah_pinjam) {
+            $alat->jumlah_tersedia -= $peminjaman->jumlah_pinjam;
+            $alat->save();
+
+            $peminjaman->update([
+                'status' => 'disetujui',
+                'disetujui_oleh' => 'Admin'
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Peminjaman disetujui');
+    }
+
+    public function tolak($id)
+    {
+        $peminjaman = \App\Models\PeminjamanAlat::findOrFail($id);
+
+        $peminjaman->update([
+            'status' => 'ditolak'
+        ]);
+
+        return redirect()->back()->with('success', 'Peminjaman ditolak');
+    }
+    
     /**
      * Display the specified resource.
      */

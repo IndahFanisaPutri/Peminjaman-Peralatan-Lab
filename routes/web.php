@@ -10,6 +10,11 @@ Route::get('/', function () {
 
 Route::resource('alat', AlatLaboratoriumController::class);
 Route::resource('peminjaman', PeminjamanAlatController::class);
+Route::get('/peminjaman/setujui/{id}', [PeminjamanAlatController::class, 'setujui'])
+    ->name('peminjaman.setujui');
+
+Route::get('/peminjaman/tolak/{id}', [PeminjamanAlatController::class, 'tolak'])
+    ->name('peminjaman.tolak');
 
 
 

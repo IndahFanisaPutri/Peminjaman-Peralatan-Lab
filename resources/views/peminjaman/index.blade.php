@@ -13,6 +13,7 @@
         <th>Alat</th>
         <th>Jumlah</th>
         <th>Status</th>
+        <th>Aksi</th>
     </tr>
 
     @foreach($peminjaman as $item)
@@ -22,6 +23,29 @@
         <td>{{ $item->alat->nama_alat }}</td>
         <td>{{ $item->jumlah_pinjam }}</td>
         <td>{{ $item->status }}</td>
+
+        <td>
+
+        @if($item->status == 'menunggu')
+
+            <a href="{{ route('peminjaman.setujui', $item->id) }}">
+                Setujui
+            </a>
+
+            |
+
+            <a href="{{ route('peminjaman.tolak', $item->id) }}">
+                Tolak
+            </a>
+
+        @else
+
+            Tidak ada aksi
+
+        @endif
+
+    </td>
+    
     </tr>
     @endforeach
 </table>
