@@ -39,7 +39,6 @@
             {{ $item->jumlah }}
         </td>
 
-        //foto alat
         <td>
             @if($item->foto)
                 <img 

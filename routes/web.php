@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlatLaboratoriumController;
 use App\Http\Controllers\PeminjamanAlatController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
-    return redirect()->route('alat.index');
+    return redirect()
+    ->route('dashboard');
 });
 
 Route::resource('alat', AlatLaboratoriumController::class);
@@ -23,3 +25,5 @@ Route::get('/peminjaman/kembali/{id}',
 ])
 ->name('peminjaman.kembali');
 
+Route::get('/dashboard',[DashboardController::class,'index'])
+->name('dashboard');

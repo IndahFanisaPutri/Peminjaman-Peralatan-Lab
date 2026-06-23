@@ -1,7 +1,5 @@
 <h2>Detail Alat Laboratorium</h2>
 
-
-//memasukkan foto alat
 @if($alat->foto)
     <p>
         <b>Foto Alat:</b>
