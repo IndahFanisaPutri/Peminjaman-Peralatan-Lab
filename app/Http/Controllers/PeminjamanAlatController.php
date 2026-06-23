@@ -86,7 +86,52 @@ class PeminjamanAlatController extends Controller
 
         return redirect()->back()->with('success', 'Peminjaman ditolak');
     }
-    
+
+    public function kembali($id)
+    {
+        $peminjaman = PeminjamanAlat::findOrFail($id);
+
+        $alat = AlatLaboratorium::findOrFail($peminjaman->alat_id);
+
+
+        // jumlah hari terlambat
+        $terlambat = 0;
+
+        if (now()->format('Y-m-d') > $peminjaman->tanggal_rencana_kembali) {
+
+            $terlambat = now()
+            ->diffInDays($peminjaman->tanggal_rencana_kembali);
+
+        }
+
+
+        // denda 5000 per hari
+        $denda = $terlambat * 5000;
+
+
+        // kembalikan stok
+        $alat->jumlah_tersedia += $peminjaman->jumlah_pinjam;
+
+        $alat->save();
+
+
+        $peminjaman->update([
+
+            'tanggal_kembali' => now(),
+
+            'kondisi_kembali' => 'baik',
+
+            'denda' => $denda,
+
+            'status' => 'dikembalikan'
+
+        ]);
+
+
+        return redirect()
+            ->route('peminjaman.index')
+            ->with('success','Alat berhasil dikembalikan');
+    }
     /**
      * Display the specified resource.
      */

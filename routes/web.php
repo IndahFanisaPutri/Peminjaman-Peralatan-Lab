@@ -16,5 +16,10 @@ Route::get('/peminjaman/setujui/{id}', [PeminjamanAlatController::class, 'setuju
 Route::get('/peminjaman/tolak/{id}', [PeminjamanAlatController::class, 'tolak'])
     ->name('peminjaman.tolak');
 
-
+Route::get('/peminjaman/kembali/{id}', 
+[
+    PeminjamanAlatController::class,
+    'kembali'
+])
+->name('peminjaman.kembali');
 
