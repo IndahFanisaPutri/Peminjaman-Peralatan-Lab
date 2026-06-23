@@ -33,7 +33,16 @@ class AlatLaboratoriumController extends Controller
             'kode_alat' => 'required',
             'nama_alat' => 'required',
             'jumlah' => 'required|integer',
+            'foto' => 'image|mimes:jpg,jpeg,png|max:2048'
         ]);
+
+        $foto = null;
+
+        if($request->hasFile('foto')){
+            $foto = $request->file('foto')
+            ->store('foto_alat','public');
+        }
+
 
         AlatLaboratorium::create([
             'kode_alat' => $request->kode_alat,
@@ -46,6 +55,7 @@ class AlatLaboratoriumController extends Controller
             'jumlah_tersedia' => $request->jumlah,
             'lokasi' => $request->lokasi,
             'deskripsi' => $request->deskripsi,
+            'foto' => $foto
         ]);
 
         return redirect()->route('alat.index')

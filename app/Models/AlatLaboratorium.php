@@ -19,6 +19,7 @@ class AlatLaboratorium extends Model
         'jumlah_tersedia',
         'lokasi',
         'deskripsi',
+        'foto'
     ];
 
     // Relasi: 1 alat punya banyak peminjaman

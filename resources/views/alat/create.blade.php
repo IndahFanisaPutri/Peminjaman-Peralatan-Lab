@@ -1,6 +1,8 @@
 <h2>Tambah Alat Laboratorium</h2>
 
-<form action="{{ route('alat.store') }}" method="POST">
+<form action="{{ route('alat.store') }}" 
+method="POST"
+enctype="multipart/form-data">
 @csrf
 
 Kode Alat:
@@ -26,6 +28,9 @@ Lokasi:
 
 Deskripsi:
 <textarea name="deskripsi"></textarea><br>
+
+Foto Alat:
+<input type="file" name="foto"><br><br>
 
 <button type="submit">Simpan</button>
 
