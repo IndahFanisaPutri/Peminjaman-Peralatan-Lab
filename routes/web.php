@@ -1,29 +1,31 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AlatLaboratoriumController;
-use App\Http\Controllers\PeminjamanAlatController;
-use App\Http\Controllers\DashboardController;
+
 
 Route::get('/', function () {
-    return redirect()
-    ->route('dashboard');
+    return view('login');
 });
 
-Route::resource('alat', AlatLaboratoriumController::class);
-Route::resource('peminjaman', PeminjamanAlatController::class);
-Route::get('/peminjaman/setujui/{id}', [PeminjamanAlatController::class, 'setujui'])
-    ->name('peminjaman.setujui');
+Route::middleware(['auth','role:admin'])->group(function(){
+    Route::resource('alat',AlatLaboratoriumController::class);
+});
 
-Route::get('/peminjaman/tolak/{id}', [PeminjamanAlatController::class, 'tolak'])
-    ->name('peminjaman.tolak');
+Route::middleware('auth')->group(function(){
+    Route::resource('peminjaman',PeminjamanAlatController::class);
+});
 
-Route::get('/peminjaman/kembali/{id}', 
-[
-    PeminjamanAlatController::class,
-    'kembali'
-])
-->name('peminjaman.kembali');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-Route::get('/dashboard',[DashboardController::class,'index'])
-->name('dashboard');
+
+
+require __DIR__.'/auth.php';
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
