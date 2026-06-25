@@ -1,49 +1,48 @@
-<h1>
-Dashboard Sistem Peminjaman Laboratorium
-</h1>
+@extends('layouts.template')
+@section('content')
 
-<table border="1" cellpadding="10">
-    <tr>
-        <td>Jumlah Jenis Alat</td>
-        <td>{{ $jumlahAlat }}</td>
-    </tr>
+    <h2>Dashboard Admin</h2>
 
-    <tr>
-        <td>Total Stok Alat</td>
-        <td>{{ $totalStok }}</td>
-    </tr>
-
-    <tr>
-        <td>Alat Tersedia</td>
-        <td>{{ $alatTersedia }}</td>
-    </tr>
-
-    <tr>
-        <td>Total Peminjaman</td>
-        <td>{{ $jumlahPeminjaman }}</td>
-    </tr>
-
-    <tr>
-        <td>Sedang Dipinjam</td>
-        <td>{{ $sedangDipinjam }}</td>
-    </tr>
-</table>
+    <div class="card">
+        <h3>{{ $jumlahAlat }}</h3>
+        <p>Jenis Alat</p>
+    </div>
 
 
+    <div class="card">
+        <h3>{{ $totalStok }}</h3>
+        <p>Total Stok</p>
+    </div>
 
-<h3>
-Alat Paling Sering Dipinjam
-</h3>
 
-@if($alatTerpopuler)
-    <p>Nama Alat :{{ $alatTerpopuler->alat->nama_alat }}</p>
-    <p>Jumlah Dipinjam :{{ $alatTerpopuler->jumlah_pinjam }}kali</p>
-@else
-    <p>Belum ada data peminjaman</p>
-@endif
+    <div class="card">
+        <h3>{{ $alatTersedia }}</h3>
+        <p>Alat Tersedia</p>
+    </div>
 
-<br>
 
-<a href="{{ route('alat.index') }}">Data Alat</a>
+    <div class="card">
+        <h3>{{ $jumlahPeminjaman }}</h3>
+        <p>Total Peminjaman</p>
+    </div>
 
-<a href="{{ route('peminjaman.index') }}">Peminjaman</a>
+
+    <div class="card">
+        <h3>{{ $sedangDipinjam }}</h3>
+        <p>Sedang Dipinjam</p>
+    </div>
+
+
+    <h3>Alat Terpopuler</h3>
+
+    @if($alatTerpopuler)
+        <p>
+            {{ $alatTerpopuler->alat->nama_alat }}
+            dipinjam
+            {{ $alatTerpopuler->jumlah_pinjam }}
+            kali
+        </p>
+    @else
+        <p>Belum ada peminjaman</p>
+    @endif
+@endsection

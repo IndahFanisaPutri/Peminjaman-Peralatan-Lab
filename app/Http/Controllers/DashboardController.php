@@ -10,13 +10,21 @@ class DashboardController extends Controller
     public function index()
     {
         $jumlahAlat = AlatLaboratorium::count();
+
         $totalStok = AlatLaboratorium::sum('jumlah');
+
         $alatTersedia = AlatLaboratorium::sum('jumlah_tersedia');
+
+
         $jumlahPeminjaman = PeminjamanAlat::count();
+
+
         $sedangDipinjam = PeminjamanAlat::where(
             'status',
             'disetujui'
         )->count();
+
+
 
         $alatTerpopuler = PeminjamanAlat::selectRaw(
             'alat_id, count(*) as jumlah_pinjam'
@@ -26,13 +34,22 @@ class DashboardController extends Controller
         ->with('alat')
         ->first();
 
-        return view('dashboard.index',[
+
+
+        return view('dashboard',[
+
             'jumlahAlat'=>$jumlahAlat,
+
             'totalStok'=>$totalStok,
+
             'alatTersedia'=>$alatTersedia,
+
             'jumlahPeminjaman'=>$jumlahPeminjaman,
+
             'sedangDipinjam'=>$sedangDipinjam,
+
             'alatTerpopuler'=>$alatTerpopuler
+
         ]);
     }
 }

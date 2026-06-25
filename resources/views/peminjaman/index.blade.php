@@ -1,79 +1,83 @@
-<h2>Data Peminjaman Alat</h2>
+@extends('layouts.template')
+@section('content')
 
-<a href="{{ route('peminjaman.create') }}">
-    + Ajukan Peminjaman
-</a>
+    <h2>Data Peminjaman Alat</h2>
 
-@if(session('success'))
-<p>
-    {{ session('success') }}
-</p>
-@endif
+    <a href="{{ route('peminjaman.create') }}">
+        + Ajukan Peminjaman
+    </a>
 
-<table border="1" cellpadding="10">
-    <tr>
-        <th>Nama</th>
-        <th>NIM</th>
-        <th>Alat</th>
-        <th>Jumlah</th>
-        <th>Status</th>
-        <th>Denda</th>
-        <th>Aksi</th>
-    </tr>
+    @if(session('success'))
+    <p>
+        {{ session('success') }}
+    </p>
+    @endif
 
-    @foreach($peminjaman as $item)
+    <table border="1" cellpadding="10">
+        <tr>
+            <th>Nama</th>
+            <th>NIM</th>
+            <th>Alat</th>
+            <th>Jumlah</th>
+            <th>Status</th>
+            <th>Denda</th>
+            <th>Aksi</th>
+        </tr>
 
-    <tr>
-        <td>
-            {{ $item->nama_peminjam }}
-        </td>
+        @foreach($peminjaman as $item)
 
-        <td>
-            {{ $item->nim_peminjam }}
-        </td>
+        <tr>
+            <td>
+                {{ $item->nama_peminjam }}
+            </td>
 
-        <td>
-            {{ $item->alat->nama_alat }}
-        </td>
+            <td>
+                {{ $item->nim_peminjam }}
+            </td>
 
-        <td>
-            {{ $item->jumlah_pinjam }}
-        </td>
+            <td>
+                {{ $item->alat->nama_alat }}
+            </td>
 
-        <td>
-            {{ $item->status }}
-        </td>
+            <td>
+                {{ $item->jumlah_pinjam }}
+            </td>
 
-        <td>
-            Rp {{ number_format($item->denda) }}
-        </td>
+            <td>
+                {{ $item->status }}
+            </td>
 
-        <td>
-            @if($item->status == 'menunggu')
-            <a href="{{ route('peminjaman.setujui',$item->id) }}">
-                Setujui
-            </a>
+            <td>
+                Rp {{ number_format($item->denda) }}
+            </td>
 
-            <a href="{{ route('peminjaman.tolak',$item->id) }}">
-                Tolak
-            </a>
+            <td>
+                @if($item->status == 'menunggu')
+                <a href="{{ route('peminjaman.setujui',$item->id) }}">
+                    Setujui
+                </a>
 
-            @elseif($item->status == 'disetujui')
+                <a href="{{ route('peminjaman.tolak',$item->id) }}">
+                    Tolak
+                </a>
 
-            <a href="{{ route('peminjaman.kembali',$item->id) }}">
-                Kembalikan
-            </a>
+                @elseif($item->status == 'disetujui')
 
-            @elseif($item->status == 'dikembalikan')
+                <a href="{{ route('peminjaman.kembali',$item->id) }}">
+                    Kembalikan
+                </a>
 
-            Selesai
+                @elseif($item->status == 'dikembalikan')
 
-            @else
+                Selesai
 
-            {{ $item->status }}
+                @else
 
-            @endif
-        </td>
-    </tr>
-    @endforeach
-</table>
+                {{ $item->status }}
+
+                @endif
+            </td>
+        </tr>
+        @endforeach
+    </table>
+@endsection

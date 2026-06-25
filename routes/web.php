@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AlatLaboratoriumController;
+use App\Http\Controllers\PeminjamanAlatController;
 
 Route::get('/', function () {
-    return view('login');
+    return view('welcome');
 });
 
 Route::middleware(['auth','role:admin'])->group(function(){
@@ -26,6 +28,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard',
+[DashboardController::class,'index'])
+->middleware(['auth'])
+->name('dashboard');
