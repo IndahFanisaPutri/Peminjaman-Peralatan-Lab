@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AlatLaboratoriumController;
 use App\Http\Controllers\PeminjamanAlatController;
 use App\Http\Controllers\ServisAlatController;
+use App\Http\Controllers\LaporanController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,3 +37,7 @@ Route::get('/dashboard',
 
 Route::resource('servis',ServisAlatController::class)
 ->middleware('auth');
+
+Route::get('/laporan',[LaporanController::class,'index'])
+->middleware('auth')
+->name('laporan.index');
