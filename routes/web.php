@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AlatLaboratoriumController;
 use App\Http\Controllers\PeminjamanAlatController;
+use App\Http\Controllers\ServisAlatController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,3 +33,6 @@ Route::get('/dashboard',
 [DashboardController::class,'index'])
 ->middleware(['auth'])
 ->name('dashboard');
+
+Route::resource('servis',ServisAlatController::class)
+->middleware('auth');
