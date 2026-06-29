@@ -30,36 +30,39 @@ class AlatLaboratoriumController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-            'kode_alat' => 'required',
-            'nama_alat' => 'required',
-            'jumlah' => 'required|integer',
-            'foto' => 'image|mimes:jpg,jpeg,png|max:2048'
-        ]);
+            'kode_alat'=>'required',
+            'nama_alat'=>'required',
+            'jumlah'=>'required|integer',
+            'foto'=>'nullable|image|mimes:jpg,jpeg,png|max:2048'
+            ]);
 
-        $foto = null;
+            $foto = null;
 
-        if($request->hasFile('foto')){
-            $foto = $request->file('foto')
-            ->store('foto_alat','public');
-        }
+            if($request->hasFile('foto'))
+            {
+                $foto = $request
+                ->file('foto')
+                ->store('foto_alat','public');
+            }
+
+            AlatLaboratorium::create([
+                'kode_alat'=>$request->kode_alat,
+                'nama_alat'=>$request->nama_alat,
+                'kategori'=>$request->kategori,
+                'merk'=>$request->merk,
+                'model'=>$request->model,
+                'kondisi'=>$request->kondisi,
+                'jumlah'=>$request->jumlah,
+                'jumlah_tersedia'=>$request->jumlah,
+                'lokasi'=>$request->lokasi,
+                'deskripsi'=>$request->deskripsi,
+                'foto'=>$foto
+            ]);
 
 
-        AlatLaboratorium::create([
-            'kode_alat' => $request->kode_alat,
-            'nama_alat' => $request->nama_alat,
-            'kategori' => $request->kategori,
-            'merk' => $request->merk,
-            'model' => $request->model,
-            'kondisi' => $request->kondisi ?? 'baik',
-            'jumlah' => $request->jumlah,
-            'jumlah_tersedia' => $request->jumlah,
-            'lokasi' => $request->lokasi,
-            'deskripsi' => $request->deskripsi,
-            'foto' => $foto
-        ]);
-
-        return redirect()->route('alat.index')
-            ->with('success', 'Data alat berhasil ditambahkan');
+            return redirect()
+            ->route('alat.index')
+            ->with('success','Data alat berhasil ditambahkan');
     }
 
     /**

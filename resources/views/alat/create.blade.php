@@ -1,6 +1,7 @@
 <h2>Tambah Alat Laboratorium</h2>
 
-<form action="{{ route('alat.store') }}" 
+<form 
+action="{{ route('alat.store') }}" 
 method="POST"
 enctype="multipart/form-data">
 @csrf
@@ -30,6 +31,7 @@ Deskripsi:
 <textarea name="deskripsi"></textarea><br>
 
 Foto Alat:
+<label>Foto Alat</label>
 <input type="file" name="foto"><br><br>
 
 <button type="submit">Simpan</button>

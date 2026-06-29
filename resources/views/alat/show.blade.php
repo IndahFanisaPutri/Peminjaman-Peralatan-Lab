@@ -1,75 +1,153 @@
+@extends('layouts.template')
+@section('content')
+
 <h2>Detail Alat Laboratorium</h2>
+<hr>
+<!-- FOTO ALAT -->
 
-@if($alat->foto)
-    <p>
-        <b>Foto Alat:</b>
-    </p>
+<div>
+    <h3>
+        Foto Kondisi Alat
+    </h3>
 
-    <img 
-    src="{{ asset('storage/'.$alat->foto) }}"
-    width="250"
-    height="250">
-@else
-    <p>
-        Tidak ada foto alat
-    </p>
-@endif
+    @if($alat->foto)
+        <img
+            src="{{ asset('storage/'.$alat->foto) }}"
+            width="300"
+            height="300"
+            style="object-fit:cover;border-radius:10px;">
+    @else
+        <p>
+            Belum ada foto alat
+        </p>
+    @endif
+</div>
 
-<br><br>
+<br>
 
-<p>
-    <b>Kode:</b> 
-    {{ $alat->kode_alat }}
-</p>
+<!-- INFORMASI ALAT -->
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+    <td>
+        <b>Kode Alat</b>
+    </td>
 
-<p>
-    <b>Nama:</b> 
-    {{ $alat->nama_alat }}
-</p>
+    <td>
+        {{ $alat->kode_alat }}
+    </td>
+</tr>
 
-<p>
-    <b>Kategori:</b> 
-    {{ $alat->kategori }}
-</p>
+<tr>
+    <td>
+        <b>Nama Alat</b>
+    </td>
 
-<p>
-    <b>Merk:</b> 
-    {{ $alat->merk }}
-</p>
+    <td>
+        {{ $alat->nama_alat }}
+    </td>
+</tr>
 
-<p>
-    <b>Model:</b> 
-    {{ $alat->model }}
-</p>
+<tr>
+    <td>
+        <b>Kategori</b>
+    </td>
 
-<p>
-    <b>Kondisi:</b> 
-    {{ $alat->kondisi }}
-</p>
+    <td>
+        {{ $alat->kategori }}
+    </td>
+</tr>
 
-<p>
-    <b>Jumlah:</b> 
-    {{ $alat->jumlah }}
-</p>
+<tr>
+    <td>
+        <b>Merk</b>
+    </td>
 
-<p>
-    <b>Jumlah Tersedia:</b> 
-    {{ $alat->jumlah_tersedia }}
-</p>
+    <td>
+        {{ $alat->merk }}
+    </td>
+</tr>
 
-<p>
-    <b>Lokasi:</b> 
+<tr>
+    <td>
+        <b>Model</b>
+    </td>
+
+    <td>
+        {{ $alat->model }}
+    </td>
+</tr>
+
+
+<tr>
+
+    <td>
+        <b>Kondisi Alat</b>
+    </td>
+
+    <td>
+        @if($alat->kondisi == 'baik')
+            <span>
+                Baik
+            </span>
+        @elseif($alat->kondisi == 'rusak')
+            <span>
+                Rusak
+            </span>
+        @else
+            <span>
+                Perlu Perbaikan
+            </span>
+        @endif
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <b>Jumlah</b>
+    </td>
+    <td>
+        {{ $alat->jumlah }}
+    </td>
+</tr>
+
+<tr>
+    <td>
+        <b>Jumlah Tersedia</b>
+    </td>
+
+    <td>
+        {{ $alat->jumlah_tersedia }}
+    </td>
+</tr>
+
+<tr>
+    <td>
+    <b>Lokasi Penyimpanan</b>
+    </td>
+
+    <td>
     {{ $alat->lokasi }}
-</p>
+    </td>
+</tr>
 
-<p>
-    <b>Deskripsi:</b>
-</p>
-
-<p>
+<tr>
+    <td>
+        <b>Deskripsi</b>
+    </td>
+    
+    <td>
+    @if($alat->deskripsi)
     {{ $alat->deskripsi }}
-</p>
+    @else
+    Tidak ada deskripsi
+    @endif
+    </td>
+</tr>
+</table>
+<br>
 
 <a href="{{ route('alat.index') }}">
-    Kembali
+    ← Kembali
 </a>
+
+@endsection
