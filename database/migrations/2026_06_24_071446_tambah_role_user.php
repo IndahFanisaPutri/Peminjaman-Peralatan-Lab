@@ -6,27 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            
-            $table->enum('role',[
-                'admin',
-                'mahasiswa'
-            ])
-            ->default('mahasiswa');
 
-        });
+        // role sudah dibuat di create_users_table.php
+
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
-        //
+
+        // tidak ada perubahan
+
     }
+
 };

@@ -7,14 +7,15 @@ use App\Http\Controllers\AlatLaboratoriumController;
 use App\Http\Controllers\PeminjamanAlatController;
 use App\Http\Controllers\ServisAlatController;
 use App\Http\Controllers\LaporanController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth','role:admin'])->group(function(){
-    Route::resource('alat',AlatLaboratoriumController::class);
-});
+Route::resource('alat',AlatLaboratoriumController::class)
+->middleware(['auth','role:admin']);
 
 Route::middleware('auth')->group(function(){
     Route::resource('peminjaman',PeminjamanAlatController::class);
@@ -36,8 +37,20 @@ Route::get('/dashboard',
 ->name('dashboard');
 
 Route::resource('servis',ServisAlatController::class)
-->middleware('auth');
+->middleware(['auth','role:admin']);
 
 Route::get('/laporan',[LaporanController::class,'index'])
-->middleware('auth')
+->middleware(['auth','role:admin'])
 ->name('laporan.index');
+
+Route::post('/logout', function (Request $request) {
+
+    Auth::logout();
+
+    $request->session()->invalidate();
+
+    $request->session()->regenerateToken();
+
+    return redirect('/login');
+
+})->name('logout');

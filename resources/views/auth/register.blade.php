@@ -1,52 +1,236 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
+<div class="min-h-screen flex items-center justify-center 
+bg-gradient-to-br from-indigo-900 via-purple-700 to-indigo-600">
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+<div class="w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden">
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+<div class="bg-gradient-to-br from-purple-600 to-indigo-500 p-10 text-center text-white">
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
+<div class="mx-auto w-24 h-24 rounded-2xl bg-white/20 flex items-center justify-center">
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
+<span class="text-5xl font-bold">
+S
+</span>
+
+
+</div>
+
+
+<h1 class="text-3xl mt-4 font-bold">
+SilaLab
+</h1>
+
+
+<p>
+Registrasi Sistem Laboratorium
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="p-8">
+
+
+<form method="POST" action="{{route('register')}}">
+
+@csrf
+
+
+
+<div>
+
+
+<label>Nama</label>
+
+<input
+
+name="name"
+
+required
+
+class="mt-2 w-full rounded-xl border-gray-300"
+
+placeholder="Nama lengkap">
+
+
+</div>
+
+
+
+
+
+
+<div class="mt-4">
+
+<label>Email</label>
+
+<input
+
+type="email"
+
+name="email"
+
+required
+
+class="mt-2 w-full rounded-xl border-gray-300"
+
+placeholder="Email">
+
+
+</div>
+
+
+
+
+
+
+<div class="mt-4">
+
+<label>Password</label>
+
+<input
+
+type="password"
+
+name="password"
+
+required
+
+class="mt-2 w-full rounded-xl border-gray-300">
+
+
+</div>
+
+
+
+
+
+<div class="mt-4">
+
+<label>Konfirmasi Password</label>
+
+
+<input
+
+type="password"
+
+name="password_confirmation"
+
+required
+
+class="mt-2 w-full rounded-xl border-gray-300">
+
+
+</div>
+
+
+
+
+
+
+<!-- ROLE -->
+
+
+<div class="mt-5">
+
+
+<label class="font-semibold">
+Daftar Sebagai
+</label>
+
+
+<select
+
+name="role"
+
+class="mt-2 w-full rounded-xl border-gray-300">
+
+
+<option value="user">
+
+🎓 User
+
+</option>
+
+
+<option value="admin">
+
+🛡 Admin
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+
+<button
+
+class="mt-6 w-full py-3 rounded-xl
+
+bg-gradient-to-r from-indigo-600 to-purple-600
+
+text-white font-bold">
+
+
+Buat Akun
+
+
+</button>
+
+
+
+
+
+</form>
+
+
+
+
+<div class="text-center mt-5">
+
+
+Sudah punya akun?
+
+
+<a href="{{route('login')}}"
+class="text-indigo-600 font-bold">
+
+Login
+
+</a>
+
+
+</div>
+
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
 </x-guest-layout>

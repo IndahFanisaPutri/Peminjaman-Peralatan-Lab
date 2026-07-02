@@ -2,33 +2,121 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PeminjamanAlat;
+
 use App\Models\AlatLaboratorium;
+use App\Models\PeminjamanAlat;
+
 
 class LaporanController extends Controller
 {
+
+
     public function index()
     {
-        // total alat
-        $jumlahAlat = AlatLaboratorium::count();
 
-        // total peminjaman
-        $jumlahPeminjaman = PeminjamanAlat::count();
+
+        // total alat
+
+        $jumlahAlat =
+        AlatLaboratorium::count();
+
+
+
+
+        // total stok
+
+        $totalStok =
+        AlatLaboratorium::sum('jumlah');
+
+
+
+
+        // jumlah peminjaman
+
+        $jumlahPeminjaman =
+        PeminjamanAlat::count();
+
+
+
+
+
 
         // alat paling sering dipinjam
-        $alatTerpopuler = PeminjamanAlat::selectRaw(
-            'alat_id, COUNT(*) as total_pinjam'
+
+
+        $alatTerpopuler =
+
+        PeminjamanAlat::selectRaw(
+            'alat_id, count(*) as total'
         )
+
         ->groupBy('alat_id')
-        ->orderByDesc('total_pinjam')
+
+        ->orderByDesc('total')
+
         ->with('alat')
-        ->get();
+
+        ->first();
 
 
-        return view('laporan.index',[
-            'jumlahAlat'=>$jumlahAlat,
-            'jumlahPeminjaman'=>$jumlahPeminjaman,
-            'alatTerpopuler'=>$alatTerpopuler
-        ]);
+
+
+
+
+
+
+        // kondisi alat
+
+
+        $kondisiAlat = [
+
+            'baik' =>
+            AlatLaboratorium::where(
+                'kondisi',
+                'baik'
+            )->count(),
+
+
+            'rusak' =>
+            AlatLaboratorium::where(
+                'kondisi',
+                'rusak'
+            )->count(),
+
+
+            'perbaikan' =>
+            AlatLaboratorium::where(
+                'kondisi',
+                'perbaikan'
+            )->count(),
+
+        ];
+
+
+
+
+
+
+
+        return view(
+            'laporan.index',
+            compact(
+
+                'jumlahAlat',
+
+                'totalStok',
+
+                'jumlahPeminjaman',
+
+                'alatTerpopuler',
+
+                'kondisiAlat'
+
+            )
+        );
+
+
     }
+
+
 }

@@ -1,184 +1,408 @@
 <x-app-layout>
 
-<x-slot name="header">
+<div class="min-h-screen bg-gray-100">
 
-<h2 class="font-semibold text-xl text-gray-800">
-Dashboard Sistem Peminjaman Laboratorium
-</h2>
 
-</x-slot>
+    <!-- SIDEBAR -->
+    <aside class="fixed left-0 top-0 h-screen w-64 bg-white shadow-lg hidden md:block z-50">
 
 
-<div class="py-10">
+        <div class="h-20 flex items-center px-8">
 
-<div class="max-w-7xl mx-auto">
+            <div class="text-3xl text-indigo-500 font-bold">
+                S
+            </div>
 
+            <h1 class="ml-3 text-xl font-bold text-gray-700">
+                SilaLab
+            </h1>
 
-<!-- CARD STATISTIK -->
+        </div>
 
-<div class="grid grid-cols-1 md:grid-cols-4 gap-5">
 
 
-<div class="bg-white shadow rounded-lg p-6">
+        <nav class="px-5 space-y-2">
 
-<h3>
-Total Jenis Alat
-</h3>
 
-<h1 class="text-4xl font-bold">
-{{ $jumlahAlat }}
-</h1>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-indigo-100 text-indigo-600 font-semibold">
 
-</div>
+                🏠 Dashboard
 
+            </a>
 
 
-<div class="bg-white shadow rounded-lg p-6">
 
-<h3>
-Total Stok
-</h3>
+            <a href="{{ route('alat.index') }}"
+            class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-gray-100 rounded-xl">
 
-<h1 class="text-4xl font-bold">
-{{ $totalStok }}
-</h1>
+                ⚙️ Peralatan
 
-</div>
+            </a>
 
 
 
-<div class="bg-white shadow rounded-lg p-6">
+            <a href="{{ route('peminjaman.index') }}"
+            class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-gray-100 rounded-xl">
 
-<h3>
-Alat Tersedia
-</h3>
+                📦 Peminjaman
 
-<h1 class="text-4xl font-bold">
-{{ $alatTersedia }}
-</h1>
+            </a>
 
-</div>
 
 
+            @if(auth()->user()->role=='admin')
 
-<div class="bg-white shadow rounded-lg p-6">
+            <a href="{{ route('laporan.index') }}"
+            class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-gray-100 rounded-xl">
 
-<h3>
-Peminjaman
-</h3>
+                📊 Laporan
 
-<h1 class="text-4xl font-bold">
-{{ $jumlahPeminjaman }}
-</h1>
+            </a>
 
-</div>
 
+            @endif
 
-</div>
 
 
 
-<br>
 
+            <form method="POST" action="{{route('logout')}}">
 
+                @csrf
 
-<!-- INFORMASI -->
+                <button class="w-full text-left px-4 py-3 text-red-500">
 
-<div class="bg-white shadow rounded-lg p-6">
+                    🚪 Logout
 
+                </button>
 
-<h2 class="text-xl font-bold">
-Informasi Utilitas Alat
-</h2>
 
+            </form>
 
-<hr>
 
 
-@if($alatTerpopuler)
+        </nav>
 
 
-<p class="mt-3">
 
-Alat yang paling sering dipinjam:
+    </aside>
 
-<b>
-{{ $alatTerpopuler->alat->nama_alat }}
-</b>
 
-</p>
 
 
-<p>
 
-Total peminjaman:
 
-<b>
-{{ $alatTerpopuler->jumlah_pinjam }}
-kali
-</b>
+    <!-- CONTENT -->
 
-</p>
+    <main class="flex-1 p-6 ml-64">
 
 
-@else
 
+        <!-- TOPBAR -->
 
-<p>
-Belum ada data peminjaman alat
-</p>
+        <div class="bg-white rounded-xl shadow-sm px-6 py-4 flex justify-between items-center mb-6">
 
 
-@endif
 
+            <div class="text-gray-400">
 
-</div>
+                🔍 Search
 
+            </div>
 
 
-<br>
 
+            <div class="flex gap-5 items-center">
 
 
-<!-- MENU CEPAT -->
+                🔔
 
 
-<div class="bg-white shadow rounded-lg p-6">
+                <div class="w-10 h-10 rounded-full bg-indigo-200 flex items-center justify-center">
 
+                    👤
 
-<h2 class="font-bold text-xl">
-Menu Cepat
-</h2>
+                </div>
 
 
-<div class="mt-3">
+            </div>
 
 
-<a href="{{ route('alat.index') }}"
-class="px-4 py-2 bg-blue-500 text-white rounded">
 
-Data Alat
+        </div>
 
-</a>
 
 
 
-<a href="{{ route('peminjaman.index') }}"
-class="px-4 py-2 bg-green-500 text-white rounded">
 
-Peminjaman
 
-</a>
 
+        <!-- WELCOME -->
 
-</div>
 
+        <div class="grid lg:grid-cols-3 gap-6">
 
-</div>
 
 
+            <div class="lg:col-span-2 bg-white rounded-xl shadow-sm p-8">
 
-</div>
+
+
+                <h2 class="text-2xl font-bold text-indigo-600">
+
+                    Congratulations {{auth()->user()->name}} 🎉
+
+                </h2>
+
+
+
+                <p class="text-gray-500 mt-3">
+
+                    Sistem peminjaman laboratorium berjalan dengan baik.
+                    Kelola alat dan peminjaman dengan mudah.
+
+                </p>
+
+
+
+                <a href="{{route('peminjaman.index')}}"
+                class="inline-block mt-5 px-5 py-2 bg-indigo-500 text-white rounded-lg">
+
+
+                    Mulai Peminjaman
+
+
+                </a>
+
+
+
+            </div>
+
+
+
+
+
+            <div class="bg-indigo-100 rounded-xl flex items-center justify-center text-7xl">
+
+
+                👨‍💻
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <!-- STATISTIC -->
+
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-5 mt-6">
+
+
+
+            <div class="bg-white p-5 rounded-xl shadow-sm">
+
+
+                <p class="text-gray-400">
+                    Jumlah Alat
+                </p>
+
+
+                <h2 class="text-3xl font-bold">
+
+                    {{$jumlahAlat}}
+
+                </h2>
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="bg-white p-5 rounded-xl shadow-sm">
+
+
+                <p class="text-gray-400">
+                    Total Stok
+                </p>
+
+
+                <h2 class="text-3xl font-bold">
+
+                    {{$totalStok}}
+
+                </h2>
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="bg-white p-5 rounded-xl shadow-sm">
+
+
+                <p class="text-gray-400">
+                    Alat Tersedia
+                </p>
+
+
+                <h2 class="text-3xl font-bold text-green-500">
+
+                    {{$alatTersedia}}
+
+                </h2>
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="bg-white p-5 rounded-xl shadow-sm">
+
+
+                <p class="text-gray-400">
+                    Peminjaman
+                </p>
+
+
+                <h2 class="text-3xl font-bold">
+
+                    {{$jumlahPeminjaman}}
+
+                </h2>
+
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+        <!-- BOTTOM -->
+
+
+        <div class="grid lg:grid-cols-3 gap-6 mt-6">
+
+
+
+            <div class="lg:col-span-2 bg-white rounded-xl shadow-sm p-6">
+
+
+
+                <h2 class="text-xl font-bold mb-5">
+
+                    Statistik Peminjaman
+
+                </h2>
+
+
+
+
+                <div class="h-60 flex items-end gap-6">
+
+
+                    @for($i=1;$i<=7;$i++)
+
+
+                    <div class="bg-indigo-400 w-8 rounded-t"
+                    style="height: {{rand(30,90)}}%">
+
+                    </div>
+
+
+                    @endfor
+
+
+                </div>
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <div class="bg-white rounded-xl shadow-sm p-6">
+
+
+
+                <h2 class="font-bold">
+
+                    Statistik
+
+                </h2>
+
+
+
+
+                <div class="mt-8 text-center">
+
+
+                    <div class="text-5xl text-indigo-500">
+
+                        78%
+
+                    </div>
+
+
+                    <p class="text-gray-400">
+
+                        Growth
+
+                    </p>
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+
+    </main>
+
 
 
 </div>

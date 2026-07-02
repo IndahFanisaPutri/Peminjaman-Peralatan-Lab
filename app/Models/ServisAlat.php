@@ -2,33 +2,49 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Model;
 
 
 class ServisAlat extends Model
 {
 
-    protected $fillable = [
 
-        'alat_id',
-        'tanggal_servis',
-        'teknisi',
-        'kerusakan',
-        'tindakan',
-        'status'
-
-    ];
+protected $table = 'servis_alat';
 
 
 
-    public function alat()
-    {
+protected $fillable = [
 
-        return $this->belongsTo(
-            AlatLaboratorium::class,
-            'alat_id'
-        );
+    'alat_id',
 
-    }
+    'tanggal_servis',
+
+    'tanggal_selesai',
+
+    'status',
+
+    'kerusakan',
+
+    'tindakan',
+
+    'foto'
+
+];
+
+
+
+
+
+public function alat()
+{
+
+    return $this->belongsTo(
+        AlatLaboratorium::class,
+        'alat_id'
+    );
+
+}
+
 
 }
