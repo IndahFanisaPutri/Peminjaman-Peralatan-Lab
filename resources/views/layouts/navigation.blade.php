@@ -470,16 +470,29 @@
 
             <!-- Laporan -->
 
+            @if(auth()->user()->role == 'admin')
 
-            <x-responsive-nav-link
-
-            :href="route('laporan.index')">
-
+                <x-nav-link
+                :href="route('laporan.index')"
+                :active="request()->routeIs('laporan.*')">
 
                 Laporan
 
+                </x-nav-link>
 
-            </x-responsive-nav-link>
+            @endif
+            
+
+            @if(auth()->user()->role == 'admin')
+
+                <x-responsive-nav-link
+                :href="route('laporan.index')">
+
+                Laporan
+
+                </x-responsive-nav-link>
+
+            @endif
 
 
 

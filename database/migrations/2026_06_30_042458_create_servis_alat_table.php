@@ -17,7 +17,7 @@ return new class extends Migration
 
 
         $table->foreignId('alat_id')
-        ->constrained('lab_equipment')
+        ->constrained('alat_laboratorium')
         ->onDelete('cascade');
 
 

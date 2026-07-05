@@ -36,6 +36,10 @@ Route::get('/dashboard',
 ->middleware(['auth'])
 ->name('dashboard');
 
+Route::get('/user/dashboard', function () {
+    return view('user.dashboard');
+})->middleware('auth')->name('user.dashboard');
+
 Route::resource('servis',ServisAlatController::class)
 ->middleware(['auth','role:admin']);
 

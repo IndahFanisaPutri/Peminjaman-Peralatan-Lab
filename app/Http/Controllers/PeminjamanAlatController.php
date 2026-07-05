@@ -5,16 +5,27 @@ namespace App\Http\Controllers;
 use App\Models\PeminjamanAlat;
 use App\Models\AlatLaboratorium;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class PeminjamanAlatController extends Controller
 {
 
     public function index()
-    {
-        $peminjaman = PeminjamanAlat::with('alat')->get();
+        {
+            if(Auth::user()->role == 'admin')
+            {
+                $peminjaman = PeminjamanAlat::with('alat')->get();
+            }
+            else
+            {
+                $peminjaman = PeminjamanAlat::with('alat')
+                                ->where('user_id', Auth::id())
+                                ->get();
+            }
 
-        return view('peminjaman.index', compact('peminjaman'));
-    }
+            return view('peminjaman.index', compact('peminjaman'));
+        }
 
 
 
@@ -36,8 +47,6 @@ class PeminjamanAlatController extends Controller
         $request->validate([
 
             'alat_id'=>'required',
-
-            'nama_peminjam'=>'required',
 
             'nim_peminjam'=>'required',
 
@@ -88,33 +97,25 @@ class PeminjamanAlatController extends Controller
 
         PeminjamanAlat::create([
 
+            'user_id' => Auth::id(),
 
-            'alat_id'=>$request->alat_id,
+            'alat_id' => $request->alat_id,
 
+            'nama_peminjam' => Auth::user()->name,
 
-            'nama_peminjam'=>$request->nama_peminjam,
+            'nim_peminjam' => $request->nim_peminjam,
 
+            'fakultas' => $request->fakultas,
 
-            'nim_peminjam'=>$request->nim_peminjam,
+            'jumlah_pinjam' => $request->jumlah_pinjam,
 
+            'keperluan' => $request->keperluan,
 
-            'fakultas'=>$request->fakultas,
+            'tanggal_pinjam' => $request->tanggal_pinjam,
 
+            'tanggal_rencana_kembali' => $request->tanggal_rencana_kembali,
 
-            'jumlah_pinjam'=>$request->jumlah_pinjam,
-
-
-            'keperluan'=>$request->keperluan,
-
-
-            'tanggal_pinjam'=>$request->tanggal_pinjam,
-
-
-            'tanggal_rencana_kembali'=>$request->tanggal_rencana_kembali,
-
-
-            'status'=>'pending'
-
+            'status' => 'menunggu'
 
         ]);
 

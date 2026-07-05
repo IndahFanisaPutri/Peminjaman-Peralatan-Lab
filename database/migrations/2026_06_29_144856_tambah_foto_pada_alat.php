@@ -6,23 +6,29 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::table('lab_equipment', function (Blueprint $table) {
-        $table->string('foto')
-        ->nullable()
-        ->after('deskripsi');
-        });
+        if (!Schema::hasColumn('alat_laboratorium', 'foto')) {
+
+            Schema::table('alat_laboratorium', function (Blueprint $table) {
+
+                $table->string('foto')->nullable()->after('deskripsi');
+
+            });
+
+        }
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        //
+        if (Schema::hasColumn('alat_laboratorium', 'foto')) {
+
+            Schema::table('alat_laboratorium', function (Blueprint $table) {
+
+                $table->dropColumn('foto');
+
+            });
+
+        }
     }
 };

@@ -2,8 +2,10 @@
 
 <div class="min-h-screen bg-gray-100">
 
+@include('layouts.admin-sidebar')
 
     <!-- SIDEBAR -->
+     @if(auth()->user()->role == 'admin')
     <aside class="fixed left-0 top-0 h-screen w-64 bg-white shadow-lg hidden md:block z-50">
 
 
@@ -87,6 +89,7 @@
 
     </aside>
 
+    @endif
 
 
 
@@ -94,7 +97,7 @@
 
     <!-- CONTENT -->
 
-    <main class="flex-1 p-6 ml-64">
+    <main class="flex-1 p-6 {{ auth()->user()->role == 'admin' ? 'ml-64' : '' }}">
 
 
 

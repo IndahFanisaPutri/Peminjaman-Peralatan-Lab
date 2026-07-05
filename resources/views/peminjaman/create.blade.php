@@ -172,10 +172,12 @@
                     </label>
 
 
-                    <input 
-                    type="text"
-                    name="nama_peminjam"
-                    class="w-full mt-2 border rounded-lg p-3">
+                    <input
+                        type="text"
+                        name="nama_peminjam"
+                        value="{{ auth()->user()->name }}"
+                        readonly
+                        class="w-full mt-2 border rounded-lg p-3 bg-gray-100">
 
 
                 </div>
