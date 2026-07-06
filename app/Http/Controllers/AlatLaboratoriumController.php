@@ -29,40 +29,42 @@ class AlatLaboratoriumController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate([
-            'kode_alat'=>'required',
-            'nama_alat'=>'required',
-            'jumlah'=>'required|integer',
-            'foto'=>'nullable|image|mimes:jpg,jpeg,png|max:2048'
-            ]);
+        $request->validate([
+            'kode_alat' => 'required|unique:alat_laboratorium,kode_alat',
+            'nama_alat' => 'required',
+            'kategori' => 'required',
+            'merk' => 'required',
+            'model' => 'required',
+            'kondisi' => 'required',
+            'jumlah' => 'required|integer|min:1',
+            'lokasi' => 'required',
+            'deskripsi' => 'nullable',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
 
-            $foto = null;
+        $foto = null;
 
-            if($request->hasFile('foto'))
-            {
-                $foto = $request
-                ->file('foto')
-                ->store('foto_alat','public');
-            }
+        if ($request->hasFile('foto')) {
+            $foto = $request->file('foto')->store('foto_alat', 'public');
+        }
 
-            AlatLaboratorium::create([
-                'kode_alat'=>$request->kode_alat,
-                'nama_alat'=>$request->nama_alat,
-                'kategori'=>$request->kategori,
-                'merk'=>$request->merk,
-                'model'=>$request->model,
-                'kondisi'=>$request->kondisi,
-                'jumlah'=>$request->jumlah,
-                'jumlah_tersedia'=>$request->jumlah,
-                'lokasi'=>$request->lokasi,
-                'deskripsi'=>$request->deskripsi,
-                'foto'=>$foto
-            ]);
+        AlatLaboratorium::create([
+            'kode_alat' => $request->kode_alat,
+            'nama_alat' => $request->nama_alat,
+            'kategori' => $request->kategori,
+            'merk' => $request->merk,
+            'model' => $request->model,
+            'kondisi' => $request->kondisi,
+            'jumlah' => $request->jumlah,
+            'jumlah_tersedia' => $request->jumlah,
+            'lokasi' => $request->lokasi,
+            'deskripsi' => $request->deskripsi,
+            'foto' => $foto,
+        ]);
 
-
-            return redirect()
+        return redirect()
             ->route('alat.index')
-            ->with('success','Data alat berhasil ditambahkan');
+            ->with('success', 'Data alat berhasil ditambahkan');
     }
 
     /**
@@ -86,23 +88,62 @@ class AlatLaboratoriumController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+   public function update(Request $request, string $id)
     {
-         $alat = AlatLaboratorium::findOrFail($id);
-
-        $alat->update([
-            'kode_alat' => $request->kode_alat,
-            'nama_alat' => $request->nama_alat,
-            'kategori' => $request->kategori,
-            'merk' => $request->merk,
-            'model' => $request->model,
-            'jumlah' => $request->jumlah,
-            'jumlah_tersedia' => $request->jumlah,
-            'lokasi' => $request->lokasi,
+        $request->validate([
+            'kode_alat' => 'required',
+            'nama_alat' => 'required',
+            'kategori' => 'required',
+            'merk' => 'required',
+            'model' => 'required',
+            'kondisi' => 'required',
+            'jumlah' => 'required|integer|min:1',
+            'lokasi' => 'required',
+            'deskripsi' => 'nullable',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        return redirect()->route('alat.index')
-            ->with('success', 'Data berhasil diupdate');
+        $alat = AlatLaboratorium::findOrFail($id);
+
+        $foto = $alat->foto;
+
+        if ($request->hasFile('foto')) {
+
+            $foto = $request
+                ->file('foto')
+                ->store('foto_alat', 'public');
+
+        }
+
+        $alat->update([
+
+            'kode_alat' => $request->kode_alat,
+
+            'nama_alat' => $request->nama_alat,
+
+            'kategori' => $request->kategori,
+
+            'merk' => $request->merk,
+
+            'model' => $request->model,
+
+            'kondisi' => $request->kondisi,
+
+            'jumlah' => $request->jumlah,
+
+            'jumlah_tersedia' => $request->jumlah,
+
+            'lokasi' => $request->lokasi,
+
+            'deskripsi' => $request->deskripsi,
+
+            'foto' => $foto,
+
+        ]);
+
+        return redirect()
+            ->route('alat.index')
+            ->with('success', 'Data alat berhasil diperbarui');
     }
 
     /**

@@ -19,12 +19,23 @@ Route::resource('alat',AlatLaboratoriumController::class)
 
 Route::middleware('auth')->group(function(){
     Route::resource('peminjaman',PeminjamanAlatController::class);
-});
+    Route::put('/peminjaman/{id}/setujui',
+    [PeminjamanAlatController::class,'setujui'])
+    ->name('peminjaman.setujui');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::put('/peminjaman/{id}/tolak',
+        [PeminjamanAlatController::class,'tolak'])
+        ->name('peminjaman.tolak');
+
+    Route::put('/peminjaman/{id}/kembali',
+        [PeminjamanAlatController::class,'kembali'])
+        ->name('peminjaman.kembali');
+    });
+
+    Route::middleware('auth')->group(function () {
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 
