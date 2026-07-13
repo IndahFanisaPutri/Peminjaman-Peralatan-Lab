@@ -85,12 +85,6 @@ class="fixed top-0 left-0 w-64 h-screen bg-white shadow-lg border-r z-50">
 
             @csrf
 
-            <button
-            class="w-full text-left px-4 py-3 rounded-lg text-red-600 hover:bg-red-100">
-
-                🚪 Logout
-
-            </button>
 
         </form>
 

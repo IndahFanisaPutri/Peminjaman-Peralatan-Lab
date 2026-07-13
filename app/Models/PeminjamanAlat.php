@@ -22,7 +22,6 @@ class PeminjamanAlat extends Model
         'tanggal_rencana_kembali',
         'tanggal_kembali',
         'kondisi_kembali',
-        'denda',
         'status',
         'disetujui_oleh'
     ];

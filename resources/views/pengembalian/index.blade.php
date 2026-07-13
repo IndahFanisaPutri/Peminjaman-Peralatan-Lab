@@ -16,17 +16,12 @@
                 </h1>
 
                 <p class="text-gray-500 mt-2">
-                    Lihat status pengembalian serta informasi denda.
+                    Lihat status pengembalian serta informasi.
                 </p>
 
             </div>
 
-            <a href="{{ route('pengembalian.create') }}"
-               class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold">
-
-                ➕ Ajukan Pengembalian
-
-            </a>
+        
 
         </div>
 
@@ -57,8 +52,6 @@
                         <th class="px-6 py-4 text-center">Status</th>
 
                         <th class="px-6 py-4 text-center">Tanggal Kembali</th>
-
-                        <th class="px-6 py-4 text-center">Denda</th>
 
                     </tr>
 
@@ -139,24 +132,6 @@
                         <td class="px-6 py-4 text-center">
 
                             {{ $item->tanggal_kembali ?? '-' }}
-
-                        </td>
-
-                        <td class="px-6 py-4 text-center">
-
-                            @if($item->denda > 0)
-
-                                <span class="text-red-600 font-bold">
-
-                                    Rp {{ number_format($item->denda,0,',','.') }}
-
-                                </span>
-
-                            @else
-
-                                -
-
-                            @endif
 
                         </td>
 

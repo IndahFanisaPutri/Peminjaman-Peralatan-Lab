@@ -32,7 +32,6 @@ return new class extends Migration
 
             $table->enum('kondisi_kembali', ['baik','cukup','rusak'])->nullable();
 
-            $table->decimal('denda', 8, 2)->default(0);
 
             $table->enum('status',[
                 'menunggu',

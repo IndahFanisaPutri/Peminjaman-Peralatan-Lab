@@ -1,422 +1,217 @@
 <x-app-layout>
 
-<div class="min-h-screen bg-gray-100 flex">
+<div class="min-h-screen bg-gray-100">
 
+    {{-- Sidebar Admin --}}
+    @include('layouts.admin-sidebar')
 
-    <!-- SIDEBAR -->
+    {{-- Content --}}
+    <main class="ml-64 p-8">
 
-    <aside class="w-64 bg-white shadow-lg hidden md:block">
-
-
-        <div class="h-20 flex items-center px-8">
-
-            <div class="text-3xl text-indigo-500 font-bold">
-                S
-            </div>
-
-            <h1 class="ml-3 text-xl font-bold text-gray-700">
-                SilaLab
-            </h1>
-
-        </div>
-
-
-
-
-        <nav class="px-5 space-y-2">
-
-
-            <a href="{{route('dashboard')}}"
-            class="flex gap-3 px-4 py-3 text-gray-500 hover:bg-gray-100 rounded-xl">
-
-                🏠 Dashboard
-
-            </a>
-
-
-
-            <a href="{{route('alat.index')}}"
-            class="flex gap-3 px-4 py-3 rounded-xl bg-indigo-100 text-indigo-600 font-semibold">
-
-                ⚙️ Peralatan
-
-            </a>
-
-
-
-
-            <a href="{{route('peminjaman.index')}}"
-            class="flex gap-3 px-4 py-3 text-gray-500 hover:bg-gray-100 rounded-xl">
-
-                📦 Peminjaman
-
-            </a>
-
-
-
-
-
-            <form method="POST" action="{{route('logout')}}">
-
-                @csrf
-
-                <button class="w-full text-left px-4 py-3 text-red-500">
-
-                    🚪 Logout
-
-                </button>
-
-
-            </form>
-
-
-
-        </nav>
-
-
-
-    </aside>
-
-
-
-
-
-    <!-- CONTENT -->
-
-    <main class="flex-1 p-8">
-
-
-
-
-
-        <!-- HEADER -->
-
+        {{-- Header --}}
         <div class="bg-white rounded-xl shadow-sm p-6 mb-6 flex justify-between items-center">
-
 
             <div>
 
-
                 <h1 class="text-2xl font-bold text-gray-700">
-
                     Data Alat Laboratorium
-
                 </h1>
 
-
                 <p class="text-gray-400 mt-2">
-
                     Kelola seluruh peralatan laboratorium
-
                 </p>
-
 
             </div>
 
-
-
-
-            <a href="{{route('alat.create')}}"
-            class="bg-indigo-500 text-white px-5 py-3 rounded-lg hover:bg-indigo-600">
-
+            <a href="{{ route('alat.create') }}"
+                class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-3 rounded-lg transition">
 
                 + Tambah Alat
 
-
             </a>
 
-
-
         </div>
 
-
-
-
-
-
+        {{-- Alert --}}
         @if(session('success'))
 
-        <div class="bg-green-100 text-green-700 p-4 rounded-lg mb-5">
+            <div class="bg-green-100 border border-green-300 text-green-700 px-5 py-4 rounded-lg mb-5">
 
-            {{session('success')}}
+                {{ session('success') }}
 
-        </div>
+            </div>
 
         @endif
 
+        {{-- Table --}}
+        <div class="bg-white rounded-xl shadow overflow-x-auto">
 
+            <table class="w-full">
 
+                <thead class="bg-gray-100">
 
+                    <tr class="text-left text-gray-600">
 
+                        <th class="p-4">Foto</th>
 
-        <!-- TABLE CARD -->
+                        <th class="p-4">Kode</th>
 
+                        <th class="p-4">Nama Alat</th>
 
-        <div class="bg-white shadow-sm rounded-xl p-6 overflow-x-auto">
+                        <th class="p-4">Kategori</th>
 
+                        <th class="p-4">Jumlah</th>
 
+                        <th class="p-4">Status</th>
 
-        <table class="w-full text-left">
+                        <th class="p-4 text-center">Aksi</th>
 
+                    </tr>
 
+                </thead>
 
-            <thead>
+                <tbody>
 
+                @forelse($alat as $item)
 
-                <tr class="border-b text-gray-500">
+                    <tr class="border-t hover:bg-gray-50">
 
+                        {{-- Foto --}}
+                        <td class="p-4">
 
-                    <th class="p-3">
-                        Foto
-                    </th>
+                            @if($item->foto)
 
+                                <img
+                                    src="{{ asset('storage/'.$item->foto) }}"
+                                    class="w-16 h-16 rounded-lg object-cover">
 
-                    <th class="p-3">
-                        Kode
-                    </th>
+                            @else
 
+                                <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500">
 
-                    <th class="p-3">
-                        Nama Alat
-                    </th>
+                                    -
 
+                                </div>
 
-                    <th class="p-3">
-                        Kategori
-                    </th>
+                            @endif
 
+                        </td>
 
-                    <th class="p-3">
-                        Jumlah
-                    </th>
+                        {{-- Kode --}}
+                        <td class="p-4">
 
+                            {{ $item->kode_alat }}
 
-                    <th class="p-3">
-                        Status
-                    </th>
+                        </td>
 
+                        {{-- Nama --}}
+                        <td class="p-4 font-semibold">
 
-                    <th class="p-3">
-                        Aksi
-                    </th>
+                            {{ $item->nama_alat }}
 
+                        </td>
 
+                        {{-- Kategori --}}
+                        <td class="p-4">
 
-                </tr>
+                            {{ $item->kategori }}
 
+                        </td>
 
+                        {{-- Jumlah --}}
+                        <td class="p-4">
 
-            </thead>
+                            {{ $item->jumlah }}
 
+                        </td>
 
+                        {{-- Status --}}
+                        <td class="p-4">
 
+                            @if($item->jumlah_tersedia > 0)
 
+                                <span class="px-3 py-1 rounded-full bg-green-100 text-green-700">
 
+                                    Tersedia
 
-            <tbody>
+                                </span>
 
+                            @else
 
+                                <span class="px-3 py-1 rounded-full bg-red-100 text-red-700">
 
-            @foreach($alat as $item)
+                                    Habis
 
+                                </span>
 
+                            @endif
 
-            <tr class="border-b hover:bg-gray-50">
+                        </td>
 
+                        {{-- Aksi --}}
+                        <td class="p-4">
 
+                            <div class="flex items-center justify-center gap-3">
 
+                                <a href="{{ route('alat.show',$item->id) }}"
+                                    class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-lg text-sm">
 
+                                    Detail
 
-                <td class="p-3">
+                                </a>
 
+                                <a href="{{ route('alat.edit',$item->id) }}"
+                                    class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-2 rounded-lg text-sm">
 
-                    @if($item->foto)
+                                    Edit
 
-                    <img
-                    src="{{asset('storage/'.$item->foto)}}"
-                    class="w-16 h-16 rounded-lg object-cover">
+                                </a>
 
+                                <form action="{{ route('alat.destroy',$item->id) }}"
+                                    method="POST"
+                                    onsubmit="return confirm('Yakin ingin menghapus alat ini?')">
 
-                    @else
+                                    @csrf
+                                    @method('DELETE')
 
+                                    <button
+                                        class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg text-sm">
 
-                    <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
+                                        Hapus
 
-                        -
+                                    </button>
 
-                    </div>
+                                </form>
 
+                            </div>
 
-                    @endif
+                        </td>
 
+                    </tr>
 
+                @empty
 
-                </td>
+                    <tr>
 
+                        <td colspan="7"
+                            class="text-center py-10 text-gray-500">
 
+                            Belum ada data alat laboratorium.
 
+                        </td>
 
+                    </tr>
 
+                @endforelse
 
-                <td class="p-3">
+                </tbody>
 
-                    {{$item->kode_alat}}
-
-                </td>
-
-
-
-
-
-                <td class="p-3 font-semibold">
-
-                    {{$item->nama_alat}}
-
-                </td>
-
-
-
-
-
-                <td class="p-3">
-
-                    {{$item->kategori}}
-
-                </td>
-
-
-
-
-
-                <td class="p-3">
-
-                    {{$item->jumlah}}
-
-                </td>
-
-
-
-
-
-
-                <td class="p-3">
-
-
-                    @if($item->jumlah_tersedia > 0)
-
-
-                    <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full">
-
-                        Tersedia
-
-                    </span>
-
-
-                    @else
-
-
-                    <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full">
-
-                        Habis
-
-                    </span>
-
-
-                    @endif
-
-
-
-                </td>
-
-
-
-
-
-
-
-
-                <td class="p-3 space-x-2">
-
-
-                    <a href="{{route('alat.show',$item->id)}}"
-                    class="text-blue-500">
-
-                        Detail
-
-                    </a>
-
-
-
-
-                    <a href="{{route('alat.edit',$item->id)}}"
-                    class="text-yellow-500">
-
-                        Edit
-
-                    </a>
-
-
-
-
-
-                    <form
-                    action="{{route('alat.destroy',$item->id)}}"
-                    method="POST"
-                    class="inline">
-
-
-                        @csrf
-
-                        @method('DELETE')
-
-
-                        <button
-                        class="text-red-500">
-
-                            Hapus
-
-                        </button>
-
-
-                    </form>
-
-
-
-
-                </td>
-
-
-
-
-            </tr>
-
-
-            @endforeach
-
-
-
-
-
-            </tbody>
-
-
-
-        </table>
-
+            </table>
 
         </div>
 
-
-
-
-
     </main>
 
-
-
-
 </div>
-
-
 
 </x-app-layout>

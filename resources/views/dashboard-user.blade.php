@@ -28,37 +28,7 @@
 
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8 mt-8">
-
-                <div class="bg-white rounded-3xl shadow p-8">
-
-                    <h2 class="text-gray-500 text-lg">
-                        Jumlah Alat
-                    </h2>
-
-                    <div class="text-5xl font-bold text-indigo-600 mt-4">
-
-                        {{ $jumlahAlat }}
-
-                    </div>
-
-                </div>
-
-                <div class="bg-white rounded-3xl shadow p-8">
-
-                    <h2 class="text-gray-500 text-lg">
-                        Alat Tersedia
-                    </h2>
-
-                    <div class="text-5xl font-bold text-green-500 mt-4">
-
-                        {{ $alatTersedia }}
-
-                    </div>
-
-                </div>
-
-            </div>
+            
 
         </div>
 

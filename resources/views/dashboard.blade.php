@@ -9,35 +9,119 @@
     <main class="ml-64 p-6">
 
         {{-- Topbar --}}
-        <div class="bg-white rounded-xl shadow-sm px-6 py-4 flex justify-between items-center mb-6">
+<div class="bg-white rounded-xl shadow-sm px-6 py-4 flex justify-between items-center mb-6">
 
-            <div>
-                <h1 class="text-2xl font-bold text-gray-700">
-                    Dashboard Admin
-                </h1>
+    <div>
+        <h1 class="text-2xl font-bold text-gray-800">
+            Dashboard Admin
+        </h1>
 
-                <p class="text-gray-500">
-                    Selamat datang, {{ auth()->user()->name }}
-                </p>
+        <p class="text-gray-500 mt-1">
+            Selamat datang kembali,
+            <span class="font-semibold text-indigo-600">
+                {{ auth()->user()->name }}
+            </span>
+        </p>
+    </div>
+
+    {{-- Profil Admin --}}
+    <div x-data="{ open: false }" class="relative">
+
+        <button
+            @click="open = !open"
+            class="flex items-center gap-3 hover:bg-gray-100 px-3 py-2 rounded-lg transition">
+
+            <div class="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold">
+
+                {{ strtoupper(substr(auth()->user()->name,0,1)) }}
+
             </div>
 
-            <div class="flex items-center gap-4">
+            <div class="text-left hidden md:block">
 
-                <button class="relative">
+                <p class="font-semibold text-gray-700">
 
-                    🔔
+                    {{ auth()->user()->name }}
 
-                    <span class="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
+                </p>
+
+                <p class="text-xs text-gray-500">
+
+                    Administrator
+
+                </p>
+
+            </div>
+
+            <svg class="w-4 h-4 text-gray-500"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24">
+
+                <path stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19 9l-7 7-7-7"/>
+
+            </svg>
+
+        </button>
+
+
+        {{-- Dropdown --}}
+        <div
+            x-show="open"
+            @click.away="open = false"
+            x-transition
+            class="absolute right-0 mt-3 w-56 bg-white rounded-xl shadow-xl border overflow-hidden z-50">
+
+            <div class="px-4 py-3 border-b">
+
+                <p class="font-semibold text-gray-700">
+
+                    {{ auth()->user()->name }}
+
+                </p>
+
+                <p class="text-sm text-gray-500">
+
+                    {{ auth()->user()->email }}
+
+                </p>
+
+            </div>
+
+
+            <a href="{{ route('profile.edit') }}"
+                class="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 transition">
+
+                👤
+
+                <span>Edit Profil</span>
+
+            </a>
+
+
+            <form method="POST" action="{{ route('logout') }}">
+
+                @csrf
+
+                <button
+                    class="w-full text-left flex items-center gap-3 px-4 py-3 hover:bg-red-50 text-red-600 transition">
+
+                    🚪
+
+                    <span>Logout</span>
 
                 </button>
 
-                <div class="w-10 h-10 rounded-full bg-indigo-500 text-white flex items-center justify-center font-bold">
-                    {{ strtoupper(substr(auth()->user()->name,0,1)) }}
-                </div>
-
-            </div>
+            </form>
 
         </div>
+
+    </div>
+
+</div>
 
         {{-- Welcome --}}
         <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 text-white shadow">

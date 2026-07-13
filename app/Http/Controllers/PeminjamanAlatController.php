@@ -280,10 +280,7 @@ class PeminjamanAlatController extends Controller
 
 
 
-        // denda
-
-        $denda = $terlambat * 5000;
-
+    
 
 
         // kembalikan stok
@@ -305,8 +302,6 @@ class PeminjamanAlatController extends Controller
 
             'kondisi_kembali'=>'baik',
 
-
-            'denda'=>$denda,
 
 
             'status'=>'dikembalikan'

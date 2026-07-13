@@ -1,516 +1,185 @@
 <x-app-layout>
 
+<div class="min-h-screen bg-gray-100">
 
-<div class="min-h-screen bg-gray-100 flex">
+    {{-- Sidebar Admin --}}
+    @include('layouts.admin-sidebar')
 
+    {{-- Content --}}
+    <main class="ml-64 p-8">
 
-
-    <!-- SIDEBAR -->
-
-    <aside class="w-64 bg-white shadow-lg hidden md:block">
-
-
-        <div class="h-20 flex items-center px-8">
-
-            <div class="text-3xl text-indigo-500 font-bold">
-                S
-            </div>
-
-
-            <h1 class="ml-3 text-xl font-bold text-gray-700">
-                SilaLab
-            </h1>
-
-        </div>
-
-
-
-
-
-        <nav class="px-5 space-y-2">
-
-
-            <a href="{{route('dashboard')}}"
-            class="flex gap-3 px-4 py-3 text-gray-500 hover:bg-gray-100 rounded-xl">
-
-                🏠 Dashboard
-
-            </a>
-
-
-
-
-
-            <a href="{{route('alat.index')}}"
-            class="flex gap-3 px-4 py-3 text-gray-500 hover:bg-gray-100 rounded-xl">
-
-                ⚙️ Peralatan
-
-            </a>
-
-
-
-
-
-            <a href="{{route('peminjaman.index')}}"
-            class="flex gap-3 px-4 py-3 text-gray-500 hover:bg-gray-100 rounded-xl">
-
-                📦 Peminjaman
-
-            </a>
-
-
-
-
-
-            <a href="{{route('servis.index')}}"
-            class="flex gap-3 px-4 py-3 text-gray-500 hover:bg-gray-100 rounded-xl">
-
-                🔧 Servis
-
-            </a>
-
-
-
-
-
-
-            <a href="{{route('laporan.index')}}"
-            class="flex gap-3 px-4 py-3 rounded-xl bg-indigo-100 text-indigo-600 font-semibold">
-
-                📊 Laporan
-
-            </a>
-
-
-
-
-
-
-
-            <form method="POST" action="{{route('logout')}}">
-
-                @csrf
-
-                <button class="w-full text-left px-4 py-3 text-red-500">
-
-                    🚪 Logout
-
-                </button>
-
-
-            </form>
-
-
-
-        </nav>
-
-
-    </aside>
-
-
-
-
-
-
-
-
-
-    <!-- CONTENT -->
-
-
-    <main class="flex-1 p-8">
-
-
-
-
-
-        <!-- HEADER -->
-
-
+        {{-- Header --}}
         <div class="bg-white rounded-xl shadow-sm p-6 mb-6 flex justify-between items-center">
-
 
             <div>
 
-
                 <h1 class="text-2xl font-bold text-gray-700">
-
                     Laporan Laboratorium
-
                 </h1>
 
-
                 <p class="text-gray-400 mt-2">
-
-                    Rekap data peminjaman dan penggunaan alat
-
+                    Rekap data peminjaman dan penggunaan alat laboratorium.
                 </p>
-
 
             </div>
 
-
-
-
-
             <button
-
-            onclick="window.print()"
-
-            class="bg-indigo-500 text-white px-5 py-3 rounded-lg hover:bg-indigo-600">
-
+                onclick="window.print()"
+                class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-3 rounded-lg transition">
 
                 🖨 Cetak Laporan
 
-
             </button>
 
-
-
         </div>
 
+        {{-- Statistik --}}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
 
+            <div class="bg-white rounded-xl shadow p-6">
 
-
-
-
-
-
-
-        <!-- STATISTIK -->
-
-
-
-        <div class="grid md:grid-cols-4 gap-5 mb-6">
-
-
-
-
-
-            <div class="bg-white rounded-xl shadow p-5">
-
-
-                <p class="text-gray-400">
-
+                <p class="text-gray-500">
                     Total Peminjaman
-
                 </p>
 
-
-                <h2 class="text-4xl font-bold text-indigo-600">
-
-                    {{$totalPeminjaman ?? 0}}
-
+                <h2 class="text-4xl font-bold text-indigo-600 mt-2">
+                    {{ $totalPeminjaman ?? 0 }}
                 </h2>
-
 
             </div>
 
+            <div class="bg-white rounded-xl shadow p-6">
 
-
-
-
-
-
-            <div class="bg-white rounded-xl shadow p-5">
-
-
-                <p class="text-gray-400">
-
+                <p class="text-gray-500">
                     Disetujui
-
                 </p>
 
-
-                <h2 class="text-4xl font-bold text-green-500">
-
-                    {{$disetujui ?? 0}}
-
+                <h2 class="text-4xl font-bold text-green-600 mt-2">
+                    {{ $disetujui ?? 0 }}
                 </h2>
-
 
             </div>
 
+            <div class="bg-white rounded-xl shadow p-6">
 
-
-
-
-
-
-            <div class="bg-white rounded-xl shadow p-5">
-
-
-                <p class="text-gray-400">
-
+                <p class="text-gray-500">
                     Dikembalikan
-
                 </p>
 
-
-                <h2 class="text-4xl font-bold text-blue-500">
-
-                    {{$dikembalikan ?? 0}}
-
+                <h2 class="text-4xl font-bold text-blue-600 mt-2">
+                    {{ $dikembalikan ?? 0 }}
                 </h2>
-
 
             </div>
 
-
-
-
-
-
-
-
-            <div class="bg-white rounded-xl shadow p-5">
-
-
-                <p class="text-gray-400">
-
-                    Denda
-
-                </p>
-
-
-                <h2 class="text-2xl font-bold text-red-500">
-
-
-                    Rp {{number_format($totalDenda ?? 0)}}
-
-
-                </h2>
-
-
-            </div>
-
-
-
-
-
         </div>
 
+        {{-- Table --}}
+        <div class="bg-white rounded-xl shadow overflow-x-auto">
 
+            <table class="w-full">
 
+                <thead class="bg-gray-100">
 
+                    <tr class="text-left text-gray-600">
 
+                        <th class="p-4">No</th>
+                        <th class="p-4">Nama Peminjam</th>
+                        <th class="p-4">Nama Alat</th>
+                        <th class="p-4">Tanggal Pinjam</th>
+                        <th class="p-4">Jumlah</th>
+                        <th class="p-4">Status</th>
 
+                    </tr>
 
+                </thead>
 
+                <tbody>
 
+                @forelse($laporan as $item)
 
+                    <tr class="border-t hover:bg-gray-50">
 
-        <!-- TABLE -->
+                        <td class="p-4">
+                            {{ $loop->iteration }}
+                        </td>
 
+                        <td class="p-4">
+                            {{ $item->nama_peminjam }}
+                        </td>
 
-        <div class="bg-white rounded-xl shadow p-6 overflow-x-auto">
+                        <td class="p-4 font-semibold">
+                            {{ $item->alat->nama_alat }}
+                        </td>
 
+                        <td class="p-4">
+                            {{ \Carbon\Carbon::parse($item->tanggal_pinjam)->format('d M Y') }}
+                        </td>
 
+                        <td class="p-4">
+                            {{ $item->jumlah_pinjam }}
+                        </td>
 
+                        <td class="p-4">
 
+                            @if($item->status=='menunggu')
 
-        <table class="w-full text-left">
+                                <span class="px-3 py-1 rounded-full bg-yellow-100 text-yellow-700">
+                                    Menunggu
+                                </span>
 
+                            @elseif($item->status=='disetujui')
 
+                                <span class="px-3 py-1 rounded-full bg-green-100 text-green-700">
+                                    Disetujui
+                                </span>
 
-            <thead>
+                            @elseif($item->status=='menunggu_pengembalian')
 
+                                <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-700">
+                                    Menunggu Pengembalian
+                                </span>
 
-            <tr class="border-b text-gray-500">
+                            @elseif($item->status=='dikembalikan')
 
+                                <span class="px-3 py-1 rounded-full bg-indigo-100 text-indigo-700">
+                                    Dikembalikan
+                                </span>
 
-                <th class="p-3">
-                    Nama
-                </th>
+                            @elseif($item->status=='ditolak')
 
+                                <span class="px-3 py-1 rounded-full bg-red-100 text-red-700">
+                                    Ditolak
+                                </span>
 
-                <th class="p-3">
-                    Alat
-                </th>
+                            @endif
 
+                        </td>
 
-                <th class="p-3">
-                    Tanggal
-                </th>
+                    </tr>
 
+                @empty
 
-                <th class="p-3">
-                    Jumlah
-                </th>
+                    <tr>
 
+                        <td colspan="6" class="text-center py-10 text-gray-500">
 
-                <th class="p-3">
-                    Status
-                </th>
+                            Belum ada data laporan.
 
+                        </td>
 
+                    </tr>
 
-            </tr>
+                @endforelse
 
+                </tbody>
 
-            </thead>
-
-
-
-
-
-
-
-            <tbody>
-
-
-
-            @foreach($laporan ?? [] as $item)
-
-
-
-            <tr class="border-b hover:bg-gray-50">
-
-
-
-
-
-                <td class="p-3">
-
-                    {{$item->nama_peminjam}}
-
-                </td>
-
-
-
-
-
-                <td class="p-3 font-semibold">
-
-                    {{$item->alat->nama_alat}}
-
-                </td>
-
-
-
-
-
-                <td class="p-3">
-
-                    {{$item->tanggal_pinjam}}
-
-                </td>
-
-
-
-
-
-                <td class="p-3">
-
-                    {{$item->jumlah_pinjam}}
-
-                </td>
-
-
-
-
-
-
-
-                <td class="p-3">
-
-
-
-                @if($item->status=='disetujui')
-
-
-                <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full">
-
-                    Disetujui
-
-                </span>
-
-
-
-
-                @elseif($item->status=='menunggu')
-
-
-                <span class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full">
-
-                    Menunggu
-
-                </span>
-
-
-
-
-                @elseif($item->status=='ditolak')
-
-
-                <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full">
-
-                    Ditolak
-
-                </span>
-
-
-
-
-                @else
-
-
-                <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full">
-
-                    Selesai
-
-                </span>
-
-
-                @endif
-
-
-
-                </td>
-
-
-
-
-
-
-            </tr>
-
-
-
-
-            @endforeach
-
-
-
-
-
-
-            </tbody>
-
-
-
-
-        </table>
-
-
-
+            </table>
 
         </div>
-
-
-
-
 
     </main>
 
-
-
-
-
-
 </div>
-
-
 
 </x-app-layout>

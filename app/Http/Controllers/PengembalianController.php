@@ -137,7 +137,6 @@ class PengembalianController extends Controller
             );
         }
 
-        $denda = $terlambat * 5000;
 
         // stok kembali
         $alat->jumlah_tersedia +=
@@ -153,7 +152,7 @@ class PengembalianController extends Controller
 
             'kondisi_kembali' => $request->kondisi_kembali,
 
-            'denda' => $denda,
+    
 
         ]);
 
