@@ -92,7 +92,7 @@
             </div>
 
 
-            <a href="{{ route('profile.edit') }}"
+            <a href="{{ route('admin.profile') }}"
                 class="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 transition">
 
                 👤

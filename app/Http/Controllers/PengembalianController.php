@@ -83,20 +83,20 @@ class PengembalianController extends Controller
      * Halaman admin
      */
     public function adminIndex()
-    {
-        $pengembalian = PeminjamanAlat::with('alat','user')
+{
+    $pengembalian = PeminjamanAlat::with('alat', 'user')
+        ->whereIn('status', [
+            'menunggu_pengembalian',
+            'dikembalikan'
+        ])
+        ->latest()
+        ->get();
 
-            ->where('status','menunggu_pengembalian')
-
-            ->latest()
-
-            ->get();
-
-        return view(
-            'admin.pengembalian.index',
-            compact('pengembalian')
-        );
-    }
+    return view(
+        'admin.pengembalian.index',
+        compact('pengembalian')
+    );
+}
 
     /**
      * Detail pengembalian

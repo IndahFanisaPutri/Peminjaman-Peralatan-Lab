@@ -96,3 +96,15 @@ Route::middleware(['auth','role:admin'])
         )->name('pengembalian.update');
 
 });
+
+use App\Http\Controllers\AdminProfileController;
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/admin/profile', [AdminProfileController::class, 'edit'])
+        ->name('admin.profile');
+
+    Route::put('/admin/profile', [AdminProfileController::class, 'update'])
+        ->name('admin.profile.update');
+
+});

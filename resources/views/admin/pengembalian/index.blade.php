@@ -2,7 +2,7 @@
 
 <div class="min-h-screen bg-gray-100">
 
-    {{-- Sidebar Admin --}}
+    {{-- Sidebar --}}
     @include('layouts.admin-sidebar')
 
     {{-- Content --}}
@@ -11,40 +11,67 @@
         {{-- Header --}}
         <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
 
-            <h1 class="text-2xl font-bold text-gray-700">
+            <h1 class="text-3xl font-bold text-gray-800">
                 Data Pengembalian Alat
             </h1>
 
-            <p class="text-gray-400 mt-2">
-                Kelola pengajuan pengembalian alat laboratorium
+            <p class="text-gray-500 mt-2">
+                Kelola seluruh pengajuan pengembalian alat laboratorium.
             </p>
 
         </div>
 
         {{-- Alert --}}
         @if(session('success'))
-            <div class="bg-green-100 border border-green-300 text-green-700 px-5 py-4 rounded-lg mb-5">
+
+            <div class="bg-green-100 border border-green-300 text-green-700 px-5 py-4 rounded-lg mb-6">
+
                 {{ session('success') }}
+
             </div>
+
         @endif
 
         {{-- Table --}}
-        <div class="bg-white rounded-xl shadow overflow-x-auto">
+        <div class="bg-white rounded-xl shadow overflow-hidden">
 
             <table class="w-full">
 
-                <thead class="bg-gray-100">
+                <thead class="bg-gray-50 border-b">
 
-                    <tr class="text-left text-gray-600">
+                    <tr>
 
-                        <th class="p-4">No</th>
-                        <th class="p-4">Nama Peminjam</th>
-                        <th class="p-4">Barang</th>
-                        <th class="p-4">Jumlah</th>
-                        <th class="p-4">Tanggal Pengembalian</th>
-                        <th class="p-4">Kondisi</th>
-                        <th class="p-4">Status</th>
-                        <th class="p-4">Aksi</th>
+                        <th class="p-4 text-left font-semibold text-gray-700">
+                            No
+                        </th>
+
+                        <th class="p-4 text-left font-semibold text-gray-700">
+                            Nama Peminjam
+                        </th>
+
+                        <th class="p-4 text-left font-semibold text-gray-700">
+                            Nama Barang
+                        </th>
+
+                        <th class="p-4 text-left font-semibold text-gray-700">
+                            Jumlah
+                        </th>
+
+                        <th class="p-4 text-left font-semibold text-gray-700">
+                            Tanggal Pengembalian
+                        </th>
+
+                        <th class="p-4 text-left font-semibold text-gray-700">
+                            Kondisi
+                        </th>
+
+                        <th class="p-4 text-left font-semibold text-gray-700">
+                            Status
+                        </th>
+
+                        <th class="p-4 text-left font-semibold text-gray-700">
+                            Aksi
+                        </th>
 
                     </tr>
 
@@ -54,51 +81,43 @@
 
                 @forelse($pengembalian as $item)
 
-                    <tr class="border-t hover:bg-gray-50">
+                    <tr class="border-b hover:bg-gray-50 transition">
 
-                        <td class="p-4">
+                        <td class="p-4 text-gray-700">
                             {{ $loop->iteration }}
                         </td>
 
                         <td class="p-4">
-                            {{ $item->nama_peminjam }}
-                        </td>
 
-                        <td class="p-4 font-semibold">
-                            {{ $item->alat->nama_alat }}
-                        </td>
+                            <span class="font-medium text-gray-800">
 
-                        <td class="p-4">
-                            {{ $item->jumlah_dikembalikan }}
-                        </td>
+                                {{ $item->nama_peminjam }}
 
-                        <td class="p-4">
-                            {{ \Carbon\Carbon::parse($item->tanggal_pengembalian)->format('d M Y') }}
+                            </span>
+
                         </td>
 
                         <td class="p-4">
 
-                            @if($item->kondisi_kembali)
+                            <span class="font-semibold text-gray-900">
 
-                                @if($item->kondisi_kembali=='baik')
+                                {{ $item->alat->nama_alat }}
 
-                                    <span class="px-3 py-1 rounded-full bg-green-100 text-green-700">
-                                        Baik
-                                    </span>
+                            </span>
 
-                                @elseif($item->kondisi_kembali=='rusak ringan')
+                        </td>
 
-                                    <span class="px-3 py-1 rounded-full bg-yellow-100 text-yellow-700">
-                                        Rusak Ringan
-                                    </span>
+                        <td class="p-4 text-gray-700">
 
-                                @else
+                            {{ $item->jumlah_pinjam }}
 
-                                    <span class="px-3 py-1 rounded-full bg-red-100 text-red-700">
-                                        Rusak Berat
-                                    </span>
+                        </td>
 
-                                @endif
+                        <td class="p-4 text-gray-700">
+
+                            @if($item->tanggal_kembali)
+
+                                {{ \Carbon\Carbon::parse($item->tanggal_kembali)->format('d M Y') }}
 
                             @else
 
@@ -108,24 +127,82 @@
 
                         </td>
 
+                        {{-- Kondisi --}}
                         <td class="p-4">
 
-                            @if($item->status=='menunggu')
+                            @if($item->kondisi_kembali)
 
-                                <span class="px-3 py-1 rounded-full bg-yellow-100 text-yellow-700">
-                                    Menunggu
+                                @if($item->kondisi_kembali=='baik')
+
+                                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
+
+                                        Baik
+
+                                    </span>
+
+                                @elseif($item->kondisi_kembali=='rusak ringan')
+
+                                    <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-medium">
+
+                                        Rusak Ringan
+
+                                    </span>
+
+                                @elseif($item->kondisi_kembali=='rusak berat')
+
+                                    <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium">
+
+                                        Rusak Berat
+
+                                    </span>
+
+                                @endif
+
+                            @else
+
+                                <span class="text-gray-400 italic">
+
+                                    Belum Dicek
+
+                                </span>
+
+                            @endif
+
+                        </td>
+
+                        {{-- Status --}}
+                        <td class="p-4">
+
+                            @if($item->status=='menunggu_pengembalian')
+
+                                <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-medium">
+
+                                    Menunggu Verifikasi
+
+                                </span>
+
+                            @elseif($item->status=='dikembalikan')
+
+                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
+
+                                    Dikembalikan
+
                                 </span>
 
                             @elseif($item->status=='disetujui')
 
-                                <span class="px-3 py-1 rounded-full bg-green-100 text-green-700">
-                                    Disetujui
+                                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
+
+                                    Dipinjam
+
                                 </span>
 
                             @elseif($item->status=='ditolak')
 
-                                <span class="px-3 py-1 rounded-full bg-red-100 text-red-700">
+                                <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium">
+
                                     Ditolak
+
                                 </span>
 
                             @endif
@@ -135,7 +212,7 @@
                         <td class="p-4">
 
                             <a href="{{ route('admin.pengembalian.show',$item->id) }}"
-                               class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg">
+                               class="inline-flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition">
 
                                 Detail
 
@@ -151,7 +228,7 @@
 
                         <td colspan="8" class="text-center py-10 text-gray-400">
 
-                            Belum ada pengajuan pengembalian.
+                            Belum ada data pengembalian.
 
                         </td>
 
