@@ -137,130 +137,373 @@
         </div>
 
         {{-- Statistik --}}
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
 
-            <div class="bg-white rounded-xl shadow p-6">
+    {{-- Jumlah Alat --}}
+    <div class="bg-white rounded-xl shadow p-6">
 
-                <p class="text-gray-500">
-                    Jumlah Alat
-                </p>
+        <p class="text-gray-500">
+            Jumlah Alat
+        </p>
 
-                <h1 class="text-4xl font-bold text-indigo-600 mt-2">
-                    {{ $jumlahAlat }}
-                </h1>
+        <h1 class="text-4xl font-bold text-indigo-600 mt-2">
+            {{ $jumlahAlat }}
+        </h1>
 
-            </div>
+    </div>
 
-            <div class="bg-white rounded-xl shadow p-6">
+    {{-- Menunggu Persetujuan --}}
+    <div class="bg-white rounded-xl shadow p-6">
 
-                <p class="text-gray-500">
-                    Total Stok
-                </p>
+        <p class="text-gray-500">
+            Menunggu Persetujuan
+        </p>
 
-                <h1 class="text-4xl font-bold text-blue-600 mt-2">
-                    {{ $totalStok }}
-                </h1>
+        <h1 class="text-4xl font-bold text-yellow-500 mt-2">
+            {{ $menunggu }}
+        </h1>
 
-            </div>
+    </div>
 
-            <div class="bg-white rounded-xl shadow p-6">
+    {{-- Sedang Dipinjam --}}
+    <div class="bg-white rounded-xl shadow p-6">
 
-                <p class="text-gray-500">
-                    Alat Tersedia
-                </p>
+        <p class="text-gray-500">
+            Sedang Dipinjam
+        </p>
 
-                <h1 class="text-4xl font-bold text-green-600 mt-2">
-                    {{ $alatTersedia }}
-                </h1>
+        <h1 class="text-4xl font-bold text-blue-600 mt-2">
+            {{ $dipinjam }}
+        </h1>
 
-            </div>
+    </div>
 
-            <div class="bg-white rounded-xl shadow p-6">
+    {{-- Sudah Dikembalikan --}}
+    <div class="bg-white rounded-xl shadow p-6">
 
-                <p class="text-gray-500">
-                    Total Peminjaman
-                </p>
+        <p class="text-gray-500">
+            Sudah Dikembalikan
+        </p>
 
-                <h1 class="text-4xl font-bold text-orange-500 mt-2">
-                    {{ $jumlahPeminjaman }}
-                </h1>
+        <h1 class="text-4xl font-bold text-green-600 mt-2">
+            {{ $dikembalikan }}
+        </h1>
 
-            </div>
+    </div>
 
-        </div>
+</div>
 
+    <div class="mt-10 mb-5">
+
+    <h2 class="text-2xl font-bold text-gray-800">
+
+        Modul Manajemen Sistem Laboratorium
+
+    </h2>
+
+    <p class="text-gray-500 mt-1">
+
+        Akses cepat ke seluruh fitur utama Sistem Informasi Peminjaman Peralatan Laboratorium.
+
+    </p>
+
+</div>
+
+            
         {{-- Menu Cepat --}}
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
 
             <a href="{{ route('alat.index') }}"
-               class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition">
+class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition duration-300">
 
-                <div class="text-5xl">
-                    ⚙️
-                </div>
+    <div class="flex justify-between items-center">
 
-                <h2 class="font-bold text-xl mt-4">
-                    Kelola Alat
-                </h2>
+        <div>
 
-                <p class="text-gray-500 mt-2">
-                    Tambah, ubah, dan hapus data alat.
-                </p>
+            <p class="text-sm text-gray-500">
+                Modul
+            </p>
 
-            </a>
-
-            <a href="{{ route('peminjaman.index') }}"
-               class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition">
-
-                <div class="text-5xl">
-                    📦
-                </div>
-
-                <h2 class="font-bold text-xl mt-4">
-                    Peminjaman
-                </h2>
-
-                <p class="text-gray-500 mt-2">
-                    Kelola seluruh data peminjaman.
-                </p>
-
-            </a>
-
-            <a href="{{ route('servis.index') }}"
-               class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition">
-
-                <div class="text-5xl">
-                    🛠️
-                </div>
-
-                <h2 class="font-bold text-xl mt-4">
-                    Servis
-                </h2>
-
-                <p class="text-gray-500 mt-2">
-                    Kelola data servis peralatan.
-                </p>
-
-            </a>
-
-            <a href="{{ route('laporan.index') }}"
-               class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition">
-
-                <div class="text-5xl">
-                    📊
-                </div>
-
-                <h2 class="font-bold text-xl mt-4">
-                    Laporan
-                </h2>
-
-                <p class="text-gray-500 mt-2">
-                    Lihat laporan peminjaman.
-                </p>
-
-            </a>
+            <h2 class="text-xl font-bold text-gray-800 mt-1">
+                Data Peralatan
+            </h2>
 
         </div>
+
+        <div class="text-5xl">
+            🧪
+        </div>
+
+    </div>
+
+    <p class="text-gray-500 mt-5">
+
+        Kelola seluruh data inventaris laboratorium mulai dari
+        penambahan, perubahan hingga penghapusan data alat.
+
+    </p>
+
+    <div class="mt-5 text-indigo-600 font-semibold">
+
+        Buka Modul →
+
+    </div>
+
+</a>
+
+            <a href="{{ route('peminjaman.index') }}"
+class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition duration-300">
+
+    <div class="flex justify-between items-center">
+
+        <div>
+
+            <p class="text-sm text-gray-500">
+                Modul
+            </p>
+
+            <h2 class="text-xl font-bold text-gray-800 mt-1">
+                Data Peminjaman
+            </h2>
+
+        </div>
+
+        <div class="text-5xl">
+            📦
+        </div>
+
+    </div>
+
+    <p class="text-gray-500 mt-5">
+
+        Kelola seluruh pengajuan peminjaman,
+        persetujuan hingga riwayat peminjaman alat.
+
+    </p>
+
+    <div class="mt-5 text-indigo-600 font-semibold">
+
+        Buka Modul →
+
+    </div>
+
+</a>
+
+            <a href="{{ route('servis.index') }}"
+class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition duration-300">
+
+    <div class="flex justify-between items-center">
+
+        <div>
+
+            <p class="text-sm text-gray-500">
+                Modul
+            </p>
+
+            <h2 class="text-xl font-bold text-gray-800 mt-1">
+                Servis Peralatan
+            </h2>
+
+        </div>
+
+        <div class="text-5xl">
+            🔧
+        </div>
+
+    </div>
+
+    <p class="text-gray-500 mt-5">
+
+        Pantau proses servis, perawatan,
+        dan kondisi setiap peralatan laboratorium.
+
+    </p>
+
+    <div class="mt-5 text-indigo-600 font-semibold">
+
+        Buka Modul →
+
+    </div>
+
+</a>
+
+            <a href="{{ route('laporan.index') }}"
+class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition duration-300">
+
+    <div class="flex justify-between items-center">
+
+        <div>
+
+            <p class="text-sm text-gray-500">
+                Modul
+            </p>
+
+            <h2 class="text-xl font-bold text-gray-800 mt-1">
+                Laporan Sistem
+            </h2>
+
+        </div>
+
+        <div class="text-5xl">
+            📊
+        </div>
+
+    </div>
+
+    <p class="text-gray-500 mt-5">
+
+        Lihat laporan peminjaman,
+        pengembalian serta statistik penggunaan alat.
+
+    </p>
+
+    <div class="mt-5 text-indigo-600 font-semibold">
+
+        Buka Modul →
+
+    </div>
+
+</a>
+
+        </div>
+
+        {{-- Alat Hampir Habis --}}
+<div class="bg-white rounded-xl shadow mt-8">
+
+    {{-- Header --}}
+    <div class="bg-white rounded-xl shadow mt-6 p-4">
+
+        <div>
+
+            <h2 class="text-xl font-bold mb-2">
+                Alat hampir habis
+            </h2>
+
+        </div>
+
+        
+    </div>
+
+    {{-- Isi --}}
+    <div class="p-5">
+
+        @forelse($alatHampirHabis as $alat)
+
+            <div class="flex items-center justify-between border rounded-xl p-4 mb-4 hover:shadow-md transition">
+
+                {{-- Icon --}}
+                <div class="flex items-center gap-4">
+
+                    <div class="w-14 h-14 rounded-xl bg-orange-100 flex items-center justify-center text-2xl">
+
+                        🧪
+
+                    </div>
+
+                    <div>
+
+                        <h3 class="font-bold text-gray-800">
+
+                            {{ $alat->nama_alat }}
+
+                        </h3>
+
+                        <p class="text-sm text-gray-500">
+
+                            {{ $alat->kategori }}
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                {{-- Status --}}
+                <div class="text-right">
+
+                    @if($alat->jumlah_tersedia==0)
+
+                        <span class="inline-block px-4 py-1 rounded-full bg-red-100 text-red-600 font-semibold">
+
+                            Habis
+
+                        </span>
+
+                    @elseif($alat->jumlah_tersedia==1)
+
+                        <span class="inline-block px-4 py-1 rounded-full bg-red-100 text-red-600 font-semibold">
+
+                            1 Unit
+
+                        </span>
+
+                    @elseif($alat->jumlah_tersedia==2)
+
+                        <span class="inline-block px-4 py-1 rounded-full bg-yellow-100 text-yellow-700 font-semibold">
+
+                            2 Unit
+
+                        </span>
+
+                    @else
+
+                        <span class="inline-block px-4 py-1 rounded-full bg-orange-100 text-orange-700 font-semibold">
+
+                            {{ $alat->jumlah_tersedia }} Unit
+
+                        </span>
+
+                    @endif
+
+                    {{-- Progress --}}
+                    <div class="mt-3 w-44 h-2 bg-gray-200 rounded-full overflow-hidden">
+
+                        <div
+                            class="
+                            @if($alat->jumlah_tersedia==0)
+                                bg-red-500
+                            @elseif($alat->jumlah_tersedia<=2)
+                                bg-yellow-500
+                            @else
+                                bg-orange-500
+                            @endif
+                            h-2 rounded-full"
+                            style="width: {{ ($alat->jumlah_tersedia/3)*100 }}%">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        @empty
+
+            <div class="py-12 text-center">
+
+                <div class="text-6xl mb-3">
+                    ✅
+                </div>
+
+                <h3 class="text-xl font-bold text-green-600">
+
+                    Semua Alat Masih Aman
+
+                </h3>
+
+                <p class="text-gray-500 mt-2">
+
+                    Tidak ada alat yang memiliki stok kurang dari atau sama dengan 3 unit.
+
+                </p>
+
+            </div>
+
+        @endforelse
+
+    </div>
+
+</div>
 
         {{-- Aktivitas Terbaru --}}
         <div class="bg-white rounded-xl shadow mt-8 p-6">
