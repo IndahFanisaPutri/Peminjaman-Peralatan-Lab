@@ -7,6 +7,7 @@ use App\Http\Controllers\AlatLaboratoriumController;
 use App\Http\Controllers\PeminjamanAlatController;
 use App\Http\Controllers\ServisAlatController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PengembalianController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -42,14 +43,13 @@ Route::middleware('auth')->group(function(){
 
 require __DIR__.'/auth.php';
 
-Route::get('/dashboard',
-[DashboardController::class,'index'])
-->middleware(['auth'])
-->name('dashboard');
+Route::get('/dashboard', [DashboardController::class,'index'])
+    ->middleware(['auth','role:admin'])
+    ->name('dashboard');
 
-Route::get('/user/dashboard', function () {
-    return view('user.dashboard');
-})->middleware('auth')->name('user.dashboard');
+Route::get('/user/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth','role:user'])
+    ->name('user.dashboard');
 
 Route::resource('servis',ServisAlatController::class)
 ->middleware(['auth','role:admin']);
@@ -58,14 +58,41 @@ Route::get('/laporan',[LaporanController::class,'index'])
 ->middleware(['auth','role:admin'])
 ->name('laporan.index');
 
-Route::post('/logout', function (Request $request) {
 
-    Auth::logout();
+Route::middleware(['auth','role:user'])->group(function(){
 
-    $request->session()->invalidate();
+    Route::get('/pengembalian',
+        [PengembalianController::class,'index'])
+        ->name('pengembalian.index');
 
-    $request->session()->regenerateToken();
+    Route::get('/pengembalian/create',
+        [PengembalianController::class,'create'])
+        ->name('pengembalian.create');
 
-    return redirect('/login');
+    Route::post('/pengembalian',
+        [PengembalianController::class,'store'])
+        ->name('pengembalian.store');
 
-})->name('logout');
+});
+
+Route::middleware(['auth','role:admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function(){
+
+        Route::get(
+            '/pengembalian',
+            [PengembalianController::class,'adminIndex']
+        )->name('pengembalian.index');
+
+        Route::get(
+            '/pengembalian/{id}',
+            [PengembalianController::class,'show']
+        )->name('pengembalian.show');
+
+        Route::put(
+            '/pengembalian/{id}',
+            [PengembalianController::class,'update']
+        )->name('pengembalian.update');
+
+});

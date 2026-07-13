@@ -12,65 +12,65 @@ class PeminjamanAlatController extends Controller
 {
 
     public function index()
-        {
-            if(Auth::user()->role == 'admin')
             {
-                $peminjaman = PeminjamanAlat::with('alat')->get();
-            }
-            else
-            {
-                $peminjaman = PeminjamanAlat::with('alat')
-                                ->where('user_id', Auth::id())
-                                ->get();
+                if(Auth::user()->role == 'admin')
+                {
+                    $peminjaman = PeminjamanAlat::with('alat')->get();
+                }
+                else
+                {
+                    $peminjaman = PeminjamanAlat::with('alat')
+                                    ->where('user_id', Auth::id())
+                                    ->get();
+                }
+
+                return view('peminjaman.index', compact('peminjaman'));
             }
 
-            return view('peminjaman.index', compact('peminjaman'));
+
+
+        public function create()
+        {
+            $alat = AlatLaboratorium::all();
+
+            return view('peminjaman.create', compact('alat'));
         }
 
 
 
-    public function create()
-    {
-        $alat = AlatLaboratorium::all();
-
-        return view('peminjaman.create', compact('alat'));
-    }
 
 
+        public function store(Request $request)
+        {
 
+            // VALIDASI FORM
+            $request->validate([
 
+                'alat_id'=>'required',
 
-    public function store(Request $request)
-    {
+                'nim_peminjam'=>'required',
 
-        // VALIDASI FORM
-        $request->validate([
+                'jumlah_pinjam'=>'required|integer|min:1',
 
-            'alat_id'=>'required',
+                'tanggal_pinjam'=>'required|date',
 
-            'nim_peminjam'=>'required',
+                'tanggal_rencana_kembali'=>'required|date|after_or_equal:tanggal_pinjam',
 
-            'jumlah_pinjam'=>'required|integer|min:1',
+                'keperluan'=>'required'
 
-            'tanggal_pinjam'=>'required|date',
-
-            'tanggal_rencana_kembali'=>'required|date|after_or_equal:tanggal_pinjam',
-
-            'keperluan'=>'required'
-
-        ]);
+            ]);
 
 
 
-        // ==============================
-        // POINT NO 4
-        // CEK STOK ALAT
-        // ==============================
+            // ==============================
+            // POINT NO 4
+            // CEK STOK ALAT
+            // ==============================
 
 
-        $alat = AlatLaboratorium::findOrFail(
-            $request->alat_id
-        );
+            $alat = AlatLaboratorium::findOrFail(
+                $request->alat_id
+            );
 
 
 
@@ -132,6 +132,16 @@ class PeminjamanAlatController extends Controller
         );
 
     }
+
+    public function riwayat()
+        {
+            $riwayat = PeminjamanAlat::with('alat')
+                        ->where('user_id', Auth::id())
+                        ->latest()
+                        ->get();
+
+            return view('riwayat.index', compact('riwayat'));
+        }
 
 
 
@@ -319,7 +329,7 @@ class PeminjamanAlatController extends Controller
 
     }
 
-
+    
 
 
 

@@ -28,12 +28,11 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required','string','max:255'],
-            'email' => ['required','string','email','max:255','unique:users'],
-            'role' => ['required','in:admin,user'],
-            'password' => ['required','confirmed', Rules\Password::defaults()],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'role' => ['required', 'in:admin,user'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
 
         $user = User::create([
             'name' => $request->name,
@@ -42,12 +41,14 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        dd($user);
-        
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect()->route('dashboard');
+        if ($user->role == 'admin') {
+            return redirect()->route('dashboard');
+        }
+
+        return redirect()->route('user.dashboard');
     }
 }

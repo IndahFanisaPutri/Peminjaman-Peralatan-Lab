@@ -44,44 +44,6 @@ Sistem Peminjaman Laboratorium
 
 
 
-<!-- PILIH ROLE -->
-
-
-<div x-data="{role:'user'}">
-
-
-<div class="grid grid-cols-2 gap-4 mb-8">
-
-
-<button type="button"
-@click="role='user'"
-:class="role=='user' ? 
-'bg-indigo-600 text-white' :
-'bg-gray-100 text-gray-600'"
-class="py-3 rounded-xl font-semibold">
-
-
-🎓 User
-
-</button>
-
-
-
-
-<button type="button"
-@click="role='admin'"
-:class="role=='admin' ? 
-'bg-indigo-600 text-white' :
-'bg-gray-100 text-gray-600'"
-class="py-3 rounded-xl font-semibold">
-
-
-🛡 Admin
-
-</button>
-
-
-</div>
 
 
 

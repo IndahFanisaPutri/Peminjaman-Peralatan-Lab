@@ -34,13 +34,12 @@ return new class extends Migration
 
             $table->decimal('denda', 8, 2)->default(0);
 
-            $table->enum('status', [
+            $table->enum('status',[
                 'menunggu',
                 'disetujui',
                 'ditolak',
-                'dipinjam',
-                'dikembalikan',
-                'terlambat'
+                'menunggu_pengembalian',
+                'dikembalikan'
             ])->default('menunggu');
 
             $table->string('disetujui_oleh')->nullable();

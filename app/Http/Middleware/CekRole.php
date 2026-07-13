@@ -4,31 +4,27 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class CekRole
 {
     public function handle(Request $request, Closure $next, $role)
     {
-
-        if (!auth()->check()) {
-
-            return redirect('/login');
-
+        if (!Auth::check()) {
+            return redirect()->route('login');
         }
 
+        $user = Auth::user();
 
-        $user = auth()->user();
+        if ($user->role != $role) {
 
+            if ($user->role == 'admin') {
+                return redirect()->route('dashboard');
+            }
 
-        if ($user->role !== $role) {
-
-            return redirect('/dashboard');
-
+            return redirect()->route('user.dashboard');
         }
-
 
         return $next($request);
-
     }
 }
