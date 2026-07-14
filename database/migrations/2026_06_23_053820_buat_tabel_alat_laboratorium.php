@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('merk')->nullable();
             $table->string('model')->nullable();
 
-            $table->enum('kondisi', ['baik','cukup','perlu_perbaikan','rusak'])
-                  ->default('baik');
+            $table->enum('kondisi', ['baik', 'cukup', 'perlu_perbaikan', 'rusak'])
+                ->default('baik');
 
             $table->integer('jumlah')->default(1);
             $table->integer('jumlah_tersedia')->default(1);

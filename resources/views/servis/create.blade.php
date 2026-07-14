@@ -1,28 +1,28 @@
 <x-app-layout>
 
-<div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen bg-gray-100">
 
-    {{-- Sidebar Admin --}}
-    @include('layouts.admin-sidebar')
+        {{-- Sidebar Admin --}}
+        @include('layouts.admin-sidebar')
 
-    {{-- Content --}}
-    <main class="ml-64 p-8">
+        {{-- Content --}}
+        <main class="ml-64 p-8">
 
-        {{-- Header --}}
-        <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+            {{-- Header --}}
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
 
-            <h1 class="text-2xl font-bold text-gray-700">
-                Tambah Jadwal Servis
-            </h1>
+                <h1 class="text-2xl font-bold text-gray-700">
+                    Tambah Jadwal Servis
+                </h1>
 
-            <p class="text-gray-400 mt-2">
-                Tambahkan data jadwal servis alat laboratorium.
-            </p>
+                <p class="text-gray-400 mt-2">
+                    Tambahkan data jadwal servis alat laboratorium.
+                </p>
 
-        </div>
+            </div>
 
-        {{-- Error --}}
-        @if ($errors->any())
+            {{-- Error --}}
+            @if ($errors->any())
 
             <div class="bg-red-100 border border-red-300 text-red-700 rounded-lg p-4 mb-5">
 
@@ -30,7 +30,7 @@
 
                     @foreach ($errors->all() as $error)
 
-                        <li>{{ $error }}</li>
+                    <li>{{ $error }}</li>
 
                     @endforeach
 
@@ -38,29 +38,29 @@
 
             </div>
 
-        @endif
+            @endif
 
-        {{-- Form --}}
-        <div class="bg-white rounded-xl shadow p-8">
+            {{-- Form --}}
+            <div class="bg-white rounded-xl shadow p-8">
 
-            <form action="{{ route('servis.store') }}" method="POST">
+                <form action="{{ route('servis.store') }}" method="POST">
 
-                @csrf
+                    @csrf
 
-                {{-- Nama Alat --}}
-                <div class="mb-5">
+                    {{-- Nama Alat --}}
+                    <div class="mb-5">
 
-                    <label class="block mb-2 font-semibold text-gray-700">
-                        Pilih Alat
-                    </label>
+                        <label class="block mb-2 font-semibold text-gray-700">
+                            Pilih Alat
+                        </label>
 
-                    <select
-                        name="alat_id"
-                        class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500">
+                        <select
+                            name="alat_id"
+                            class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500">
 
-                        <option value="">-- Pilih Alat --</option>
+                            <option value="">-- Pilih Alat --</option>
 
-                        @foreach($alat as $a)
+                            @foreach($alat as $a)
 
                             <option value="{{ $a->id }}">
 
@@ -68,98 +68,98 @@
 
                             </option>
 
-                        @endforeach
+                            @endforeach
 
-                    </select>
+                        </select>
 
-                </div>
+                    </div>
 
-                {{-- Tanggal --}}
-                <div class="mb-5">
+                    {{-- Tanggal --}}
+                    <div class="mb-5">
 
-                    <label class="block mb-2 font-semibold text-gray-700">
-                        Tanggal Servis
-                    </label>
+                        <label class="block mb-2 font-semibold text-gray-700">
+                            Tanggal Servis
+                        </label>
 
-                    <input
-                        type="date"
-                        name="tanggal_servis"
-                        class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500">
+                        <input
+                            type="date"
+                            name="tanggal_servis"
+                            class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500">
 
-                </div>
+                    </div>
 
-                {{-- Teknisi --}}
-                <div class="mb-5">
+                    {{-- Teknisi --}}
+                    <div class="mb-5">
 
-                    <label class="block mb-2 font-semibold text-gray-700">
-                        Nama Teknisi
-                    </label>
+                        <label class="block mb-2 font-semibold text-gray-700">
+                            Nama Teknisi
+                        </label>
 
-                    <input
-                        type="text"
-                        name="teknisi"
-                        placeholder="Masukkan nama teknisi"
-                        class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500">
+                        <input
+                            type="text"
+                            name="teknisi"
+                            placeholder="Masukkan nama teknisi"
+                            class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500">
 
-                </div>
+                    </div>
 
-                {{-- Kerusakan --}}
-                <div class="mb-5">
+                    {{-- Kerusakan --}}
+                    <div class="mb-5">
 
-                    <label class="block mb-2 font-semibold text-gray-700">
-                        Kerusakan
-                    </label>
+                        <label class="block mb-2 font-semibold text-gray-700">
+                            Kerusakan
+                        </label>
 
-                    <textarea
-                        name="kerusakan"
-                        rows="4"
-                        placeholder="Masukkan deskripsi kerusakan"
-                        class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500"></textarea>
+                        <textarea
+                            name="kerusakan"
+                            rows="4"
+                            placeholder="Masukkan deskripsi kerusakan"
+                            class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500"></textarea>
 
-                </div>
+                    </div>
 
-                {{-- Tindakan --}}
-                <div class="mb-8">
+                    {{-- Tindakan --}}
+                    <div class="mb-8">
 
-                    <label class="block mb-2 font-semibold text-gray-700">
-                        Tindakan Perbaikan
-                    </label>
+                        <label class="block mb-2 font-semibold text-gray-700">
+                            Tindakan Perbaikan
+                        </label>
 
-                    <textarea
-                        name="tindakan"
-                        rows="4"
-                        placeholder="Masukkan tindakan yang dilakukan"
-                        class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500"></textarea>
+                        <textarea
+                            name="tindakan"
+                            rows="4"
+                            placeholder="Masukkan tindakan yang dilakukan"
+                            class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500"></textarea>
 
-                </div>
+                    </div>
 
-                {{-- Tombol --}}
-                <div class="flex gap-3">
+                    {{-- Tombol --}}
+                    <div class="flex gap-3">
 
-                    <button
-                        type="submit"
-                        class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg transition">
+                        <button
+                            type="submit"
+                            class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg transition">
 
-                        Simpan
+                            Simpan
 
-                    </button>
+                        </button>
 
-                    <a
-                        href="{{ route('servis.index') }}"
-                        class="bg-gray-300 hover:bg-gray-400 text-gray-700 px-6 py-3 rounded-lg transition">
+                        <a
+                            href="{{ route('servis.index') }}"
+                            class="bg-gray-300 hover:bg-gray-400 text-gray-700 px-6 py-3 rounded-lg transition">
 
-                        Kembali
+                            Kembali
 
-                    </a>
+                        </a>
 
-                </div>
+                    </div>
 
-            </form>
+                </form>
 
-        </div>
+            </div>
 
-    </main>
+        </main>
 
-</div>
+    </div>
 
 </x-app-layout>

@@ -8,7 +8,7 @@ use App\Models\AlatLaboratorium;
 
 class PeminjamanAlat extends Model
 {
-     protected $table = 'peminjaman_alat';
+    protected $table = 'peminjaman_alat';
 
     protected $fillable = [
         'user_id',

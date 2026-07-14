@@ -1,46 +1,45 @@
 <x-guest-layout>
 
-<div class="min-h-screen flex items-center justify-center 
+    <div class="min-h-screen flex items-center justify-center 
 bg-gradient-to-br from-indigo-900 via-purple-700 to-indigo-600">
 
 
-<div class="w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden">
+        <div class="w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden">
 
 
-<!-- HEADER -->
+            <!-- HEADER -->
 
-<div class="bg-gradient-to-br from-purple-600 to-indigo-500 p-10 text-center text-white">
+            <div class="bg-gradient-to-br from-purple-600 to-indigo-500 p-10 text-center text-white">
 
 
-<div class="mx-auto w-24 h-24 rounded-2xl 
-bg-white/20 flex items-center justify-center">
+                <div class="mx-auto w-24 h-24 rounded-2xl bg-white/20 flex items-center justify-center">
 
-<span class="text-5xl font-bold">
-S
-</span>
+                    <span class="text-5xl font-bold">
+                        S
+                    </span>
 
-</div>
+                </div>
 
 
-<h1 class="mt-5 text-3xl font-bold">
-SILAB
-</h1>
+                <h1 class="mt-5 text-3xl font-bold">
+                    SILAB
+                </h1>
 
 
-<p class="mt-2">
-Sistem Informasi Peminjaman Barang Laboratorium
-</p>
+                <p class="mt-2">
+                    Sistem Informasi Peminjaman Barang Laboratorium
+                </p>
 
 
-</div>
+            </div>
 
 
 
 
 
-<!-- FORM -->
+            <!-- FORM -->
 
-<div class="p-8">
+            <div class="p-8">
 
 
 
@@ -49,126 +48,126 @@ Sistem Informasi Peminjaman Barang Laboratorium
 
 
 
-<form method="POST" action="{{route('login')}}">
+                <form method="POST" action="{{route('login')}}">
 
-@csrf
+                    @csrf
 
 
-<input type="hidden"
-name="role"
-x-model="role">
+                    <input type="hidden"
+                        name="role"
+                        x-model="role">
 
 
 
-<!-- EMAIL -->
+                    <!-- EMAIL -->
 
 
-<div>
+                    <div>
 
-<label class="font-semibold">
-Email
-</label>
+                        <label class="font-semibold">
+                            Email
+                        </label>
 
 
-<input
-type="email"
-name="email"
-required
-placeholder="Masukkan email"
-class="mt-2 w-full rounded-xl border-gray-300">
+                        <input
+                            type="email"
+                            name="email"
+                            required
+                            placeholder="Masukkan email"
+                            class="mt-2 w-full rounded-xl border-gray-300">
 
 
-</div>
+                    </div>
 
 
 
 
 
-<!-- PASSWORD -->
+                    <!-- PASSWORD -->
 
 
-<div class="mt-5">
+                    <div class="mt-5">
 
 
-<label class="font-semibold">
-Password
-</label>
+                        <label class="font-semibold">
+                            Password
+                        </label>
 
 
-<input
+                        <input
 
-type="password"
+                            type="password"
 
-name="password"
+                            name="password"
 
-required
+                            required
 
-placeholder="Masukkan password"
+                            placeholder="Masukkan password"
 
-class="mt-2 w-full rounded-xl border-gray-300">
+                            class="mt-2 w-full rounded-xl border-gray-300">
 
 
-</div>
+                    </div>
 
 
 
 
 
 
-<div class="mt-4">
+                    <div class="mt-4">
 
 
-<label class="flex gap-2">
+                        <label class="flex gap-2">
 
 
-<input type="checkbox"
-name="remember">
+                            <input type="checkbox"
+                                name="remember">
 
 
-<span>
-Ingat saya
-</span>
+                            <span>
+                                Ingat saya
+                            </span>
 
 
-</label>
+                        </label>
 
 
-</div>
+                    </div>
 
 
 
 
 
 
-<button
-class="mt-6 w-full py-3 rounded-xl
+                    <button
+                        class="mt-6 w-full py-3 rounded-xl
 bg-gradient-to-r from-indigo-600 to-purple-600
 text-white font-bold text-lg">
 
-➜ Masuk
+                        ➜ Masuk
 
-</button>
+                    </button>
 
-</form>
+                </form>
 
-<div class="text-center mt-4 text-sm">
+                <div class="text-center mt-4 text-sm">
 
-    Belum punya akun?
+                    Belum punya akun?
 
-    <a href="{{ route('register') }}"
-       class="text-indigo-600 font-bold hover:underline">
+                    <a href="{{ route('register') }}"
+                        class="text-indigo-600 font-bold hover:underline">
 
-        Daftar sekarang
+                        Daftar sekarang
 
-    </a>
+                    </a>
 
-</div>
+                </div>
 
-</div>
-</div>
+            </div>
+        </div>
 
 
-</div>
+    </div>
 
 
 </x-guest-layout>

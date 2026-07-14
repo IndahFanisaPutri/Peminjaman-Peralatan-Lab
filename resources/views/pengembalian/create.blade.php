@@ -1,26 +1,26 @@
 <x-app-layout>
 
-@include('layouts.user-navbar')
+    @include('layouts.user-navbar')
 
-<div class="min-h-screen bg-gray-100 py-10">
+    <div class="min-h-screen bg-gray-100 py-10">
 
-    <div class="max-w-3xl mx-auto">
+        <div class="max-w-3xl mx-auto">
 
-        <div class="bg-white rounded-2xl shadow-lg p-8">
+            <div class="bg-white rounded-2xl shadow-lg p-8">
 
-            <h2 class="text-3xl font-bold text-indigo-600 mb-2">
+                <h2 class="text-3xl font-bold text-indigo-600 mb-2">
 
-                Form Pengembalian Alat
+                    Form Pengembalian Alat
 
-            </h2>
+                </h2>
 
-            <p class="text-gray-500 mb-8">
+                <p class="text-gray-500 mb-8">
 
-                Silakan isi data pengembalian alat laboratorium.
+                    Silakan isi data pengembalian alat laboratorium.
 
-            </p>
+                </p>
 
-            @if ($errors->any())
+                @if ($errors->any())
 
                 <div class="mb-6 bg-red-100 border border-red-300 rounded-lg p-4">
 
@@ -28,7 +28,7 @@
 
                         @foreach($errors->all() as $error)
 
-                            <li>{{ $error }}</li>
+                        <li>{{ $error }}</li>
 
                         @endforeach
 
@@ -36,28 +36,28 @@
 
                 </div>
 
-            @endif
+                @endif
 
-            <form action="{{ route('pengembalian.store') }}"
-                  method="POST"
-                  enctype="multipart/form-data">
+                <form action="{{ route('pengembalian.store') }}"
+                    method="POST"
+                    enctype="multipart/form-data">
 
-                @csrf
+                    @csrf
 
-                <div class="mb-6">
+                    <div class="mb-6">
 
-                    <label class="block font-semibold mb-2">
+                        <label class="block font-semibold mb-2">
 
-                        Pilih Barang
+                            Pilih Barang
 
-                    </label>
+                        </label>
 
-                    <select
-                        name="peminjaman_id"
-                        id="peminjaman_id"
-                        class="w-full rounded-lg border-gray-300">
+                        <select
+                            name="peminjaman_id"
+                            id="peminjaman_id"
+                            class="w-full rounded-lg border-gray-300">
 
-                        @foreach($peminjaman as $item)
+                            @foreach($peminjaman as $item)
 
                             <option
                                 value="{{ $item->id }}"
@@ -70,176 +70,174 @@
 
                             </option>
 
-                        @endforeach
+                            @endforeach
 
-                    </select>
+                        </select>
 
-                </div>
+                    </div>
 
-                <div class="mb-6">
+                    <div class="mb-6">
 
-                    <label class="block font-semibold mb-2">
+                        <label class="block font-semibold mb-2">
 
-                        Nama Barang
+                            Nama Barang
 
-                    </label>
+                        </label>
 
-                    <input
-                        type="text"
-                        id="nama_barang"
-                        class="w-full rounded-lg border-gray-300 bg-gray-100"
-                        readonly>
+                        <input
+                            type="text"
+                            id="nama_barang"
+                            class="w-full rounded-lg border-gray-300 bg-gray-100"
+                            readonly>
 
-                </div>
+                    </div>
 
-                <div class="mb-6">
+                    <div class="mb-6">
 
-                    <label class="block font-semibold mb-2">
+                        <label class="block font-semibold mb-2">
 
-                        Jumlah Dikembalikan
+                            Jumlah Dikembalikan
 
-                    </label>
+                        </label>
 
-                    <input
-                        type="number"
-                        name="jumlah_dikembalikan"
-                        id="jumlah"
-                        class="w-full rounded-lg border-gray-300"
-                        readonly>
+                        <input
+                            type="number"
+                            name="jumlah_dikembalikan"
+                            id="jumlah"
+                            class="w-full rounded-lg border-gray-300"
+                            readonly>
 
-                </div>
+                    </div>
 
-                <div class="mb-6">
+                    <div class="mb-6">
 
-                    <label class="block font-semibold mb-2">
+                        <label class="block font-semibold mb-2">
 
-                        Tanggal Pengembalian
+                            Tanggal Pengembalian
 
-                    </label>
+                        </label>
 
-                    <input
-                        type="date"
-                        name="tanggal_pengembalian"
-                        value="{{ date('Y-m-d') }}"
-                        readonly
-                        class="w-full rounded-lg border-gray-300 bg-gray-100">
+                        <input
+                            type="date"
+                            name="tanggal_pengembalian"
+                            value="{{ date('Y-m-d') }}"
+                            readonly
+                            class="w-full rounded-lg border-gray-300 bg-gray-100">
 
-                </div>
+                    </div>
 
-                <div class="mb-6">
+                    <div class="mb-6">
 
-                    <label class="block font-semibold mb-2">
+                        <label class="block font-semibold mb-2">
 
-                        Kondisi Barang
+                            Kondisi Barang
 
-                    </label>
+                        </label>
 
-                    <select
-                        name="kondisi_kembali"
-                        class="w-full rounded-lg border-gray-300">
+                        <select
+                            name="kondisi_kembali"
+                            class="w-full rounded-lg border-gray-300">
 
-                        <option value="baik">
+                            <option value="baik">
 
-                            Baik
+                                Baik
 
-                        </option>
+                            </option>
 
-                        <option value="cukup">
+                            <option value="cukup">
 
-                            Rusak Ringan
+                                Rusak Ringan
 
-                        </option>
+                            </option>
 
-                        <option value="rusak">
+                            <option value="rusak">
 
-                            Rusak Berat
+                                Rusak Berat
 
-                        </option>
+                            </option>
 
-                    </select>
+                        </select>
 
-                </div>
+                    </div>
 
-                <div class="mb-6">
+                    <div class="mb-6">
 
-                    <label class="block font-semibold mb-2">
+                        <label class="block font-semibold mb-2">
 
-                        Catatan
+                            Catatan
 
-                    </label>
+                        </label>
 
-                    <textarea
-                        name="catatan"
-                        rows="4"
-                        class="w-full rounded-lg border-gray-300"
-                        placeholder="Tambahkan catatan bila diperlukan"></textarea>
+                        <textarea
+                            name="catatan"
+                            rows="4"
+                            class="w-full rounded-lg border-gray-300"
+                            placeholder="Tambahkan catatan bila diperlukan"></textarea>
 
-                </div>
+                    </div>
 
-                <div class="mb-8">
+                    <div class="mb-8">
 
-                    <label class="block font-semibold mb-2">
+                        <label class="block font-semibold mb-2">
 
-                        Upload Foto Barang
+                            Upload Foto Barang
 
-                    </label>
+                        </label>
 
-                    <input
-                        type="file"
-                        name="foto"
-                        class="w-full border rounded-lg p-2">
+                        <input
+                            type="file"
+                            name="foto"
+                            class="w-full border rounded-lg p-2">
 
-                </div>
+                    </div>
 
-                <div class="flex gap-3">
+                    <div class="flex gap-3">
 
-                    <button
-                        class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg">
+                        <button
+                            class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg">
 
-                        Kirim Pengembalian
+                            Kirim Pengembalian
 
-                    </button>
+                        </button>
 
-                    <a
-                        href="{{ route('pengembalian.index') }}"
-                        class="bg-gray-300 hover:bg-gray-400 px-6 py-3 rounded-lg">
+                        <a
+                            href="{{ route('pengembalian.index') }}"
+                            class="bg-gray-300 hover:bg-gray-400 px-6 py-3 rounded-lg">
 
-                        Batal
+                            Batal
 
-                    </a>
+                        </a>
 
-                </div>
+                    </div>
 
-            </form>
+                </form>
+
+            </div>
 
         </div>
 
     </div>
 
-</div>
+    <script>
+        const select = document.getElementById('peminjaman_id');
 
-<script>
+        const nama = document.getElementById('nama_barang');
 
-const select = document.getElementById('peminjaman_id');
+        const jumlah = document.getElementById('jumlah');
 
-const nama = document.getElementById('nama_barang');
+        function tampilkanData() {
 
-const jumlah = document.getElementById('jumlah');
+            let option = select.options[select.selectedIndex];
 
-function tampilkanData(){
+            nama.value = option.dataset.nama;
 
-    let option = select.options[select.selectedIndex];
+            jumlah.value = option.dataset.jumlah;
 
-    nama.value = option.dataset.nama;
+        }
 
-    jumlah.value = option.dataset.jumlah;
+        select.addEventListener('change', tampilkanData);
 
-}
-
-select.addEventListener('change', tampilkanData);
-
-tampilkanData();
-
-</script>
+        tampilkanData();
+    </script>
 
 </x-app-layout>

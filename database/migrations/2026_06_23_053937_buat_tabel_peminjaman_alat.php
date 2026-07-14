@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('user_id')
-      ->constrained('users')
-      ->onDelete('cascade');
+                ->constrained('users')
+                ->onDelete('cascade');
 
 
             $table->foreignId('alat_id')
@@ -35,10 +35,10 @@ return new class extends Migration
 
             $table->date('tanggal_kembali')->nullable();
 
-            $table->enum('kondisi_kembali', ['baik','cukup','rusak'])->nullable();
+            $table->enum('kondisi_kembali', ['baik', 'cukup', 'rusak'])->nullable();
 
 
-            $table->enum('status',[
+            $table->enum('status', [
                 'menunggu',
                 'disetujui',
                 'ditolak',

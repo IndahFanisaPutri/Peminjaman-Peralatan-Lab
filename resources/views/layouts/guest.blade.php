@@ -3,17 +3,17 @@
 
 <head>
 
-<meta charset="utf-8">
+    <meta charset="utf-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>SILAB</title>
+    <title>SILAB</title>
 
 
-@vite([
+    @vite([
     'resources/css/app.css',
     'resources/js/app.js'
-])
+    ])
 
 
 </head>
@@ -22,7 +22,7 @@
 <body>
 
 
-{{ $slot }}
+    {{ $slot }}
 
 
 </body>

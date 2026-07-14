@@ -11,10 +11,9 @@ return new class extends Migration
         Schema::table('peminjaman_alat', function (Blueprint $table) {
 
             $table->foreignId('user_id')
-                  ->after('id')
-                  ->constrained('users')
-                  ->cascadeOnDelete();
-
+                ->after('id')
+                ->constrained('users')
+                ->cascadeOnDelete();
         });
     }
 
@@ -24,7 +23,6 @@ return new class extends Migration
 
             $table->dropForeign(['user_id']);
             $table->dropColumn('user_id');
-
         });
     }
 };

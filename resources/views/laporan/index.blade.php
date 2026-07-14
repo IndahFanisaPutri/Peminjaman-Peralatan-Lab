@@ -1,185 +1,185 @@
 <x-app-layout>
 
-<div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen bg-gray-100">
 
-    {{-- Sidebar Admin --}}
-    @include('layouts.admin-sidebar')
+        {{-- Sidebar Admin --}}
+        @include('layouts.admin-sidebar')
 
-    {{-- Content --}}
-    <main class="ml-64 p-8">
+        {{-- Content --}}
+        <main class="ml-64 p-8">
 
-        {{-- Header --}}
-        <div class="bg-white rounded-xl shadow-sm p-6 mb-6 flex justify-between items-center">
+            {{-- Header --}}
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-6 flex justify-between items-center">
 
-            <div>
+                <div>
 
-                <h1 class="text-2xl font-bold text-gray-700">
-                    Laporan Laboratorium
-                </h1>
+                    <h1 class="text-2xl font-bold text-gray-700">
+                        Laporan Laboratorium
+                    </h1>
 
-                <p class="text-gray-400 mt-2">
-                    Rekap data peminjaman dan penggunaan alat laboratorium.
-                </p>
+                    <p class="text-gray-400 mt-2">
+                        Rekap data peminjaman dan penggunaan alat laboratorium.
+                    </p>
 
-            </div>
+                </div>
 
-            <button
-                onclick="window.print()"
-                class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-3 rounded-lg transition">
+                <button
+                    onclick="window.print()"
+                    class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-3 rounded-lg transition">
 
-                🖨 Cetak Laporan
+                    🖨 Cetak Laporan
 
-            </button>
-
-        </div>
-
-        {{-- Statistik --}}
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-
-            <div class="bg-white rounded-xl shadow p-6">
-
-                <p class="text-gray-500">
-                    Total Peminjaman
-                </p>
-
-                <h2 class="text-4xl font-bold text-indigo-600 mt-2">
-                    {{ $totalPeminjaman ?? 0 }}
-                </h2>
+                </button>
 
             </div>
 
-            <div class="bg-white rounded-xl shadow p-6">
+            {{-- Statistik --}}
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
 
-                <p class="text-gray-500">
-                    Disetujui
-                </p>
+                <div class="bg-white rounded-xl shadow p-6">
 
-                <h2 class="text-4xl font-bold text-green-600 mt-2">
-                    {{ $disetujui ?? 0 }}
-                </h2>
+                    <p class="text-gray-500">
+                        Total Peminjaman
+                    </p>
+
+                    <h2 class="text-4xl font-bold text-indigo-600 mt-2">
+                        {{ $totalPeminjaman ?? 0 }}
+                    </h2>
+
+                </div>
+
+                <div class="bg-white rounded-xl shadow p-6">
+
+                    <p class="text-gray-500">
+                        Disetujui
+                    </p>
+
+                    <h2 class="text-4xl font-bold text-green-600 mt-2">
+                        {{ $disetujui ?? 0 }}
+                    </h2>
+
+                </div>
+
+                <div class="bg-white rounded-xl shadow p-6">
+
+                    <p class="text-gray-500">
+                        Dikembalikan
+                    </p>
+
+                    <h2 class="text-4xl font-bold text-blue-600 mt-2">
+                        {{ $dikembalikan ?? 0 }}
+                    </h2>
+
+                </div>
 
             </div>
 
-            <div class="bg-white rounded-xl shadow p-6">
+            {{-- Table --}}
+            <div class="bg-white rounded-xl shadow overflow-x-auto">
 
-                <p class="text-gray-500">
-                    Dikembalikan
-                </p>
+                <table class="w-full">
 
-                <h2 class="text-4xl font-bold text-blue-600 mt-2">
-                    {{ $dikembalikan ?? 0 }}
-                </h2>
+                    <thead class="bg-gray-100">
 
-            </div>
+                        <tr class="text-left text-gray-600">
 
-        </div>
+                            <th class="p-4">No</th>
+                            <th class="p-4">Nama Peminjam</th>
+                            <th class="p-4">Nama Alat</th>
+                            <th class="p-4">Tanggal Pinjam</th>
+                            <th class="p-4">Jumlah</th>
+                            <th class="p-4">Status</th>
 
-        {{-- Table --}}
-        <div class="bg-white rounded-xl shadow overflow-x-auto">
+                        </tr>
 
-            <table class="w-full">
+                    </thead>
 
-                <thead class="bg-gray-100">
+                    <tbody>
 
-                    <tr class="text-left text-gray-600">
+                        @forelse($laporan as $item)
 
-                        <th class="p-4">No</th>
-                        <th class="p-4">Nama Peminjam</th>
-                        <th class="p-4">Nama Alat</th>
-                        <th class="p-4">Tanggal Pinjam</th>
-                        <th class="p-4">Jumlah</th>
-                        <th class="p-4">Status</th>
+                        <tr class="border-t hover:bg-gray-50">
 
-                    </tr>
+                            <td class="p-4">
+                                {{ $loop->iteration }}
+                            </td>
 
-                </thead>
+                            <td class="p-4">
+                                {{ $item->nama_peminjam }}
+                            </td>
 
-                <tbody>
+                            <td class="p-4 font-semibold">
+                                {{ $item->alat->nama_alat }}
+                            </td>
 
-                @forelse($laporan as $item)
+                            <td class="p-4">
+                                {{ \Carbon\Carbon::parse($item->tanggal_pinjam)->format('d M Y') }}
+                            </td>
 
-                    <tr class="border-t hover:bg-gray-50">
+                            <td class="p-4">
+                                {{ $item->jumlah_pinjam }}
+                            </td>
 
-                        <td class="p-4">
-                            {{ $loop->iteration }}
-                        </td>
+                            <td class="p-4">
 
-                        <td class="p-4">
-                            {{ $item->nama_peminjam }}
-                        </td>
-
-                        <td class="p-4 font-semibold">
-                            {{ $item->alat->nama_alat }}
-                        </td>
-
-                        <td class="p-4">
-                            {{ \Carbon\Carbon::parse($item->tanggal_pinjam)->format('d M Y') }}
-                        </td>
-
-                        <td class="p-4">
-                            {{ $item->jumlah_pinjam }}
-                        </td>
-
-                        <td class="p-4">
-
-                            @if($item->status=='menunggu')
+                                @if($item->status=='menunggu')
 
                                 <span class="px-3 py-1 rounded-full bg-yellow-100 text-yellow-700">
                                     Menunggu
                                 </span>
 
-                            @elseif($item->status=='disetujui')
+                                @elseif($item->status=='disetujui')
 
                                 <span class="px-3 py-1 rounded-full bg-green-100 text-green-700">
                                     Disetujui
                                 </span>
 
-                            @elseif($item->status=='menunggu_pengembalian')
+                                @elseif($item->status=='menunggu_pengembalian')
 
                                 <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-700">
                                     Menunggu Pengembalian
                                 </span>
 
-                            @elseif($item->status=='dikembalikan')
+                                @elseif($item->status=='dikembalikan')
 
                                 <span class="px-3 py-1 rounded-full bg-indigo-100 text-indigo-700">
                                     Dikembalikan
                                 </span>
 
-                            @elseif($item->status=='ditolak')
+                                @elseif($item->status=='ditolak')
 
                                 <span class="px-3 py-1 rounded-full bg-red-100 text-red-700">
                                     Ditolak
                                 </span>
 
-                            @endif
+                                @endif
 
-                        </td>
+                            </td>
 
-                    </tr>
+                        </tr>
 
-                @empty
+                        @empty
 
-                    <tr>
+                        <tr>
 
-                        <td colspan="6" class="text-center py-10 text-gray-500">
+                            <td colspan="6" class="text-center py-10 text-gray-500">
 
-                            Belum ada data laporan.
+                                Belum ada data laporan.
 
-                        </td>
+                            </td>
 
-                    </tr>
+                        </tr>
 
-                @endforelse
+                        @endforelse
 
-                </tbody>
+                    </tbody>
 
-            </table>
+                </table>
 
-        </div>
+            </div>
 
-    </main>
+        </main>
 
-</div>
+    </div>
 
 </x-app-layout>

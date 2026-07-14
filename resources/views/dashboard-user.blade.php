@@ -11,7 +11,7 @@
 
                 <h1 class="text-4xl font-bold text-indigo-600">
                     Selamat Datang,
-                    {{ auth()->user()->name }} 
+                    {{ auth()->user()->name }}
                 </h1>
 
                 <p class="text-gray-500 mt-3 text-lg">
@@ -29,154 +29,154 @@
             </div>
             {{-- Pengingat Pengembalian --}}
 
-@if($pengingatPengembalian)
+            @if($pengingatPengembalian)
 
-@php
+            @php
 
-$sisaHari = now()->diffInDays(
-    $pengingatPengembalian->tanggal_rencana_kembali,
-    false
-);
+            $sisaHari = now()->diffInDays(
+            $pengingatPengembalian->tanggal_rencana_kembali,
+            false
+            );
 
-@endphp
+            @endphp
 
-<div class="bg-white rounded-3xl shadow-lg mt-8 p-8">
+            <div class="bg-white rounded-3xl shadow-lg mt-8 p-8">
 
-    <div class="flex justify-between items-center">
+                <div class="flex justify-between items-center">
 
-        <div>
+                    <div>
 
-            <h2 class="text-2xl font-bold text-gray-800">
+                        <h2 class="text-2xl font-bold text-gray-800">
 
-                🔔 Pengingat Pengembalian
+                            Pengingat Pengembalian
 
-            </h2>
+                        </h2>
 
-            <p class="text-gray-500 mt-1">
+                        <p class="text-gray-500 mt-1">
 
-                Segera lakukan pengembalian sebelum batas waktu.
+                            Segera lakukan pengembalian sebelum batas waktu.
 
-            </p>
+                        </p>
 
-        </div>
+                    </div>
 
-        @php
-$sisaHari = \Carbon\Carbon::now()->startOfDay()->diffInDays(
-    \Carbon\Carbon::parse($pengingatPengembalian->tanggal_rencana_kembali)->startOfDay(),
-    false
-);
-@endphp
-        @if($sisaHari < 0)
+                    @php
+                    $sisaHari = \Carbon\Carbon::now()->startOfDay()->diffInDays(
+                    \Carbon\Carbon::parse($pengingatPengembalian->tanggal_rencana_kembali)->startOfDay(),
+                    false
+                    );
+                    @endphp
+                    @if($sisaHari < 0)
 
-            <span class="bg-red-100 text-red-600 px-4 py-2 rounded-full font-semibold">
+                        <span class="bg-red-100 text-red-600 px-4 py-2 rounded-full font-semibold">
 
-                Terlambat {{ abs($sisaHari) }} Hari
+                        Terlambat {{ abs($sisaHari) }} Hari
 
-            </span>
+                        </span>
 
-        @elseif($sisaHari == 0)
+                        @elseif($sisaHari == 0)
 
-            <span class="bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full font-semibold">
+                        <span class="bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full font-semibold">
 
-                Hari Ini
+                            Hari Ini
 
-            </span>
+                        </span>
 
-        @else
+                        @else
 
-            <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full font-semibold">
+                        <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full font-semibold">
 
-                {{ $sisaHari }} Hari Lagi
+                            {{ $sisaHari }} Hari Lagi
 
-            </span>
+                        </span>
 
-        @endif
+                        @endif
 
-    </div>
+                </div>
 
-    <div class="grid md:grid-cols-2 gap-6 mt-8">
+                <div class="grid md:grid-cols-2 gap-6 mt-8">
 
-        <div>
+                    <div>
 
-            <p class="text-gray-500">
+                        <p class="text-gray-500">
 
-                Nama Alat
+                            Nama Alat
 
-            </p>
+                        </p>
 
-            <h3 class="text-xl font-bold text-indigo-600 mt-1">
+                        <h3 class="text-xl font-bold text-indigo-600 mt-1">
 
-                {{ $pengingatPengembalian->alat->nama_alat }}
+                            {{ $pengingatPengembalian->alat->nama_alat }}
 
-            </h3>
+                        </h3>
 
-        </div>
+                    </div>
 
-        <div>
+                    <div>
 
-            <p class="text-gray-500">
+                        <p class="text-gray-500">
 
-                Jumlah Dipinjam
+                            Jumlah Dipinjam
 
-            </p>
+                        </p>
 
-            <h3 class="text-xl font-bold mt-1">
+                        <h3 class="text-xl font-bold mt-1">
 
-                {{ $pengingatPengembalian->jumlah_pinjam }} Unit
+                            {{ $pengingatPengembalian->jumlah_pinjam }} Unit
 
-            </h3>
+                        </h3>
 
-        </div>
+                    </div>
 
-        <div>
+                    <div>
 
-            <p class="text-gray-500">
+                        <p class="text-gray-500">
 
-                Tanggal Pinjam
+                            Tanggal Pinjam
 
-            </p>
+                        </p>
 
-            <h3 class="font-semibold mt-1">
+                        <h3 class="font-semibold mt-1">
 
-                {{ \Carbon\Carbon::parse($pengingatPengembalian->tanggal_pinjam)->format('d M Y') }}
+                            {{ \Carbon\Carbon::parse($pengingatPengembalian->tanggal_pinjam)->format('d M Y') }}
 
-            </h3>
+                        </h3>
 
-        </div>
+                    </div>
 
-        <div>
+                    <div>
 
-            <p class="text-gray-500">
+                        <p class="text-gray-500">
 
-                Batas Pengembalian
+                            Batas Pengembalian
 
-            </p>
+                        </p>
 
-            <h3 class="font-semibold mt-1">
+                        <h3 class="font-semibold mt-1">
 
-                {{ \Carbon\Carbon::parse($pengingatPengembalian->tanggal_rencana_kembali)->format('d M Y') }}
+                            {{ \Carbon\Carbon::parse($pengingatPengembalian->tanggal_rencana_kembali)->format('d M Y') }}
 
-            </h3>
+                        </h3>
 
-        </div>
+                    </div>
 
-    </div>
+                </div>
 
-    <div class="mt-8">
+                <div class="mt-8">
 
-        <a href="{{ route('pengembalian.index') }}"
-            class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl">
+                    <a href="{{ route('pengembalian.index') }}"
+                        class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl">
 
-            Ajukan Pengembalian
+                        Ajukan Pengembalian
 
-        </a>
+                    </a>
 
-    </div>
+                </div>
 
-</div>
+            </div>
 
-@endif
-            
+            @endif
+
 
         </div>
 

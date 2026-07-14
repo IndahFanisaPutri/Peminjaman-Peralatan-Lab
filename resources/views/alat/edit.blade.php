@@ -1,31 +1,31 @@
 <x-app-layout>
 
-<div class="min-h-screen bg-gray-100 flex">
+    <div class="min-h-screen bg-gray-100 flex">
 
-    
-    {{-- Sidebar Admin --}}
-@include('layouts.admin-sidebar')
 
-    <!-- CONTENT -->
-    <main class="ml-64 flex-1 p-8">
+        {{-- Sidebar Admin --}}
+        @include('layouts.admin-sidebar')
 
-        <!-- HEADER -->
-        <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+        <!-- CONTENT -->
+        <main class="ml-64 flex-1 p-8">
 
-            <h1 class="text-3xl font-bold text-gray-700">
-                ✏ Edit Alat Laboratorium
-            </h1>
+            <!-- HEADER -->
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
 
-            <p class="text-gray-500 mt-2">
-                Perbarui informasi alat laboratorium.
-            </p>
+                <h1 class="text-3xl font-bold text-gray-700">
+                    ✏ Edit Alat Laboratorium
+                </h1>
 
-        </div>
+                <p class="text-gray-500 mt-2">
+                    Perbarui informasi alat laboratorium.
+                </p>
 
-        <!-- FORM -->
-        <div class="bg-white rounded-xl shadow-sm p-8">
+            </div>
 
-            @if ($errors->any())
+            <!-- FORM -->
+            <div class="bg-white rounded-xl shadow-sm p-8">
+
+                @if ($errors->any())
 
                 <div class="bg-red-100 border border-red-300 text-red-700 rounded-lg p-4 mb-6">
 
@@ -33,7 +33,7 @@
 
                         @foreach ($errors->all() as $error)
 
-                            <li>{{ $error }}</li>
+                        <li>{{ $error }}</li>
 
                         @endforeach
 
@@ -41,224 +41,222 @@
 
                 </div>
 
-            @endif
+                @endif
 
-            <form action="{{ route('alat.update',$alat->id) }}"
-                  method="POST"
-                  enctype="multipart/form-data">
+                <form action="{{ route('alat.update',$alat->id) }}"
+                    method="POST"
+                    enctype="multipart/form-data">
 
-                @csrf
-                @method('PUT')
+                    @csrf
+                    @method('PUT')
 
-                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="grid md:grid-cols-2 gap-6">
 
-                    <div>
-                        <label class="font-semibold">Kode Alat</label>
+                        <div>
+                            <label class="font-semibold">Kode Alat</label>
 
-                        <input
-                            type="text"
-                            name="kode_alat"
-                            value="{{ old('kode_alat',$alat->kode_alat) }}"
-                            class="w-full mt-2 border rounded-lg p-3">
-                    </div>
+                            <input
+                                type="text"
+                                name="kode_alat"
+                                value="{{ old('kode_alat',$alat->kode_alat) }}"
+                                class="w-full mt-2 border rounded-lg p-3">
+                        </div>
 
-                    <div>
-                        <label class="font-semibold">Nama Alat</label>
+                        <div>
+                            <label class="font-semibold">Nama Alat</label>
 
-                        <input
-                            type="text"
-                            name="nama_alat"
-                            value="{{ old('nama_alat',$alat->nama_alat) }}"
-                            class="w-full mt-2 border rounded-lg p-3">
-                    </div>
+                            <input
+                                type="text"
+                                name="nama_alat"
+                                value="{{ old('nama_alat',$alat->nama_alat) }}"
+                                class="w-full mt-2 border rounded-lg p-3">
+                        </div>
 
-                    <div>
-                        <label class="font-semibold">Kategori</label>
+                        <div>
+                            <label class="font-semibold">Kategori</label>
 
-                        <input
-                            type="text"
-                            name="kategori"
-                            value="{{ old('kategori',$alat->kategori) }}"
-                            class="w-full mt-2 border rounded-lg p-3">
-                    </div>
+                            <input
+                                type="text"
+                                name="kategori"
+                                value="{{ old('kategori',$alat->kategori) }}"
+                                class="w-full mt-2 border rounded-lg p-3">
+                        </div>
 
-                    <div>
-                        <label class="font-semibold">Merk</label>
+                        <div>
+                            <label class="font-semibold">Merk</label>
 
-                        <input
-                            type="text"
-                            name="merk"
-                            value="{{ old('merk',$alat->merk) }}"
-                            class="w-full mt-2 border rounded-lg p-3">
-                    </div>
+                            <input
+                                type="text"
+                                name="merk"
+                                value="{{ old('merk',$alat->merk) }}"
+                                class="w-full mt-2 border rounded-lg p-3">
+                        </div>
 
-                    <div>
-                        <label class="font-semibold">Model</label>
+                        <div>
+                            <label class="font-semibold">Model</label>
 
-                        <input
-                            type="text"
-                            name="model"
-                            value="{{ old('model',$alat->model) }}"
-                            class="w-full mt-2 border rounded-lg p-3">
-                    </div>
+                            <input
+                                type="text"
+                                name="model"
+                                value="{{ old('model',$alat->model) }}"
+                                class="w-full mt-2 border rounded-lg p-3">
+                        </div>
 
-                    <div>
+                        <div>
 
-                        <label class="font-semibold">
-                            Kondisi
-                        </label>
+                            <label class="font-semibold">
+                                Kondisi
+                            </label>
 
-                        <select
-                            name="kondisi"
-                            class="w-full mt-2 border rounded-lg p-3">
+                            <select
+                                name="kondisi"
+                                class="w-full mt-2 border rounded-lg p-3">
 
-                            <option value="baik"
-                                {{ old('kondisi',$alat->kondisi)=='baik' ? 'selected':'' }}>
-                                Baik
-                            </option>
+                                <option value="baik"
+                                    {{ old('kondisi',$alat->kondisi)=='baik' ? 'selected':'' }}>
+                                    Baik
+                                </option>
 
-                            <option value="cukup"
-                                {{ old('kondisi',$alat->kondisi)=='cukup' ? 'selected':'' }}>
-                                Cukup
-                            </option>
+                                <option value="cukup"
+                                    {{ old('kondisi',$alat->kondisi)=='cukup' ? 'selected':'' }}>
+                                    Cukup
+                                </option>
 
-                            <option value="rusak"
-                                {{ old('kondisi',$alat->kondisi)=='rusak' ? 'selected':'' }}>
-                                Rusak
-                            </option>
+                                <option value="rusak"
+                                    {{ old('kondisi',$alat->kondisi)=='rusak' ? 'selected':'' }}>
+                                    Rusak
+                                </option>
 
-                        </select>
+                            </select>
 
-                    </div>
+                        </div>
 
-                    <div>
-                        <label class="font-semibold">Jumlah</label>
+                        <div>
+                            <label class="font-semibold">Jumlah</label>
 
-                        <input
-                            type="number"
-                            name="jumlah"
-                            value="{{ old('jumlah',$alat->jumlah) }}"
-                            class="w-full mt-2 border rounded-lg p-3">
-                    </div>
+                            <input
+                                type="number"
+                                name="jumlah"
+                                value="{{ old('jumlah',$alat->jumlah) }}"
+                                class="w-full mt-2 border rounded-lg p-3">
+                        </div>
 
-                    <div>
-                        <label class="font-semibold">Lokasi</label>
+                        <div>
+                            <label class="font-semibold">Lokasi</label>
 
-                        <input
-                            type="text"
-                            name="lokasi"
-                            value="{{ old('lokasi',$alat->lokasi) }}"
-                            class="w-full mt-2 border rounded-lg p-3">
-                    </div>
+                            <input
+                                type="text"
+                                name="lokasi"
+                                value="{{ old('lokasi',$alat->lokasi) }}"
+                                class="w-full mt-2 border rounded-lg p-3">
+                        </div>
 
-                    <div class="md:col-span-2">
+                        <div class="md:col-span-2">
 
-                        <label class="font-semibold">
-                            Deskripsi
-                        </label>
+                            <label class="font-semibold">
+                                Deskripsi
+                            </label>
 
-                        <textarea
-                            rows="4"
-                            name="deskripsi"
-                            class="w-full mt-2 border rounded-lg p-3">{{ old('deskripsi',$alat->deskripsi) }}</textarea>
+                            <textarea
+                                rows="4"
+                                name="deskripsi"
+                                class="w-full mt-2 border rounded-lg p-3">{{ old('deskripsi',$alat->deskripsi) }}</textarea>
 
-                    </div>
+                        </div>
 
-                    <div class="md:col-span-2">
+                        <div class="md:col-span-2">
 
-                        <label class="font-semibold">
-                            Foto Saat Ini
-                        </label>
+                            <label class="font-semibold">
+                                Foto Saat Ini
+                            </label>
 
-                        <br><br>
+                            <br><br>
 
-                        @if($alat->foto)
+                            @if($alat->foto)
 
                             <img
                                 src="{{ asset('storage/'.$alat->foto) }}"
                                 class="w-48 rounded-lg border shadow">
 
-                        @else
+                            @else
 
                             <p class="text-gray-500">
                                 Belum ada foto
                             </p>
 
-                        @endif
+                            @endif
+
+                        </div>
+
+                        <div class="md:col-span-2">
+
+                            <label class="font-semibold">
+                                Ganti Foto
+                            </label>
+
+                            <input
+                                type="file"
+                                name="foto"
+                                accept="image/*"
+                                class="w-full mt-2 border rounded-lg p-3">
+
+                            <img
+                                id="preview"
+                                class="hidden mt-4 w-48 rounded-lg border shadow">
+
+                        </div>
 
                     </div>
 
-                    <div class="md:col-span-2">
+                    <div class="mt-8 flex gap-4">
 
-                        <label class="font-semibold">
-                            Ganti Foto
-                        </label>
+                        <button
+                            type="submit"
+                            class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-semibold">
 
-                        <input
-                            type="file"
-                            name="foto"
-                            accept="image/*"
-                            class="w-full mt-2 border rounded-lg p-3">
+                            💾 Update Data
 
-                        <img
-                            id="preview"
-                            class="hidden mt-4 w-48 rounded-lg border shadow">
+                        </button>
+
+                        <a href="{{ route('alat.index') }}"
+                            class="bg-gray-300 hover:bg-gray-400 px-8 py-3 rounded-lg font-semibold">
+
+                            ← Kembali
+
+                        </a>
 
                     </div>
 
-                </div>
+                </form>
 
-                <div class="mt-8 flex gap-4">
+            </div>
 
-                    <button
-                        type="submit"
-                        class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-semibold">
+        </main>
 
-                        💾 Update Data
+    </div>
 
-                    </button>
+    <script>
+        document.querySelector('input[name="foto"]').onchange = function(e) {
 
-                    <a href="{{ route('alat.index') }}"
-                       class="bg-gray-300 hover:bg-gray-400 px-8 py-3 rounded-lg font-semibold">
+            if (e.target.files.length) {
 
-                        ← Kembali
+                let reader = new FileReader();
 
-                    </a>
+                reader.onload = function() {
 
-                </div>
+                    let img = document.getElementById('preview');
 
-            </form>
+                    img.src = reader.result;
 
-        </div>
+                    img.classList.remove('hidden');
 
-    </main>
+                }
 
-</div>
+                reader.readAsDataURL(e.target.files[0]);
 
-<script>
-
-document.querySelector('input[name="foto"]').onchange = function(e){
-
-    if(e.target.files.length){
-
-        let reader = new FileReader();
-
-        reader.onload = function(){
-
-            let img = document.getElementById('preview');
-
-            img.src = reader.result;
-
-            img.classList.remove('hidden');
+            }
 
         }
-
-        reader.readAsDataURL(e.target.files[0]);
-
-    }
-
-}
-
-</script>
+    </script>
 
 </x-app-layout>

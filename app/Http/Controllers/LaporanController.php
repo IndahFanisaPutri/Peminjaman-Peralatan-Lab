@@ -9,8 +9,8 @@ class LaporanController extends Controller
     public function index()
     {
         $laporan = PeminjamanAlat::with('alat')
-                    ->latest()
-                    ->get();
+            ->latest()
+            ->get();
 
         return view('laporan.index', [
 
@@ -18,13 +18,13 @@ class LaporanController extends Controller
 
             'totalPeminjaman' => $laporan->count(),
 
-            'disetujui' => $laporan->where('status','disetujui')->count(),
+            'disetujui' => $laporan->where('status', 'disetujui')->count(),
 
-            'dikembalikan' => $laporan->where('status','dikembalikan')->count(),
+            'dikembalikan' => $laporan->where('status', 'dikembalikan')->count(),
 
-            'ditolak' => $laporan->where('status','ditolak')->count(),
+            'ditolak' => $laporan->where('status', 'ditolak')->count(),
 
-            'menunggu' => $laporan->where('status','menunggu')->count(),
+            'menunggu' => $laporan->where('status', 'menunggu')->count(),
 
         ]);
     }

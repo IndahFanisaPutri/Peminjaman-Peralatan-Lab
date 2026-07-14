@@ -29,17 +29,17 @@ class DashboardController extends Controller
         $dikembalikan = PeminjamanAlat::where('status', 'dikembalikan')->count();
 
         // Alat yang stoknya hampir habis
-$alatHampirHabis = AlatLaboratorium::where('jumlah_tersedia', '<=', 3)
-    ->orderBy('jumlah_tersedia')
-    ->limit(5)
-    ->get();
+        $alatHampirHabis = AlatLaboratorium::where('jumlah_tersedia', '<=', 3)
+            ->orderBy('jumlah_tersedia')
+            ->limit(5)
+            ->get();
 
         // Pengingat Pengembalian milik user
-$pengingatPengembalian = PeminjamanAlat::with('alat')
-    ->where('user_id', $user->id)
-    ->where('status', 'disetujui')
-    ->orderBy('tanggal_rencana_kembali')
-    ->first();
+        $pengingatPengembalian = PeminjamanAlat::with('alat')
+            ->where('user_id', $user->id)
+            ->where('status', 'disetujui')
+            ->orderBy('tanggal_rencana_kembali')
+            ->first();
 
 
         if ($user->role == 'user') {

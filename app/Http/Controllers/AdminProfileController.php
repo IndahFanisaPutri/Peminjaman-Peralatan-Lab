@@ -31,8 +31,7 @@ class AdminProfileController extends Controller
 
         $user->email = $request->email;
 
-        if($request->filled('password'))
-        {
+        if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
         }
 

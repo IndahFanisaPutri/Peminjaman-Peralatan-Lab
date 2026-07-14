@@ -11,7 +11,7 @@
         <div class="bg-white rounded-2xl shadow p-8 mb-6">
 
             <h1 class="text-3xl font-bold text-indigo-600">
-                📦 Ajukan Peminjaman
+                Ajukan Peminjaman
             </h1>
 
             <p class="text-gray-500 mt-2">

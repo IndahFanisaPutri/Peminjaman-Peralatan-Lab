@@ -1,91 +1,91 @@
 <x-app-layout>
 
-<div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen bg-gray-100">
 
-    <main class="max-w-6xl mx-auto py-10 px-5">
+        <main class="max-w-6xl mx-auto py-10 px-5">
 
-        <!-- HEADER -->
+            <!-- HEADER -->
 
-        <div class="bg-white rounded-2xl shadow-sm p-8">
+            <div class="bg-white rounded-2xl shadow-sm p-8">
 
-            <h1 class="text-3xl font-bold text-indigo-600">
-                Selamat Datang, {{ auth()->user()->name }} 👋
-            </h1>
+                <h1 class="text-3xl font-bold text-indigo-600">
+                    Selamat Datang, {{ auth()->user()->name }}
+                </h1>
 
-            <p class="text-gray-500 mt-3">
+                <p class="text-gray-500 mt-3">
 
-                Selamat datang di Sistem Informasi Peminjaman
-                Peralatan Laboratorium.
+                    Selamat datang di Sistem Informasi Peminjaman
+                    Peralatan Laboratorium.
 
-                Silakan melakukan peminjaman alat sesuai kebutuhan.
+                    Silakan melakukan peminjaman alat sesuai kebutuhan.
 
-            </p>
+                </p>
 
-            <a href="{{ route('peminjaman.create') }}"
-                class="inline-block mt-6 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl">
+                <a href="{{ route('peminjaman.create') }}"
+                    class="inline-block mt-6 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl">
 
-                📦 Mulai Meminjam
+                    Mulai Meminjam
 
-            </a>
+                </a>
 
-        </div>
-
-
-
-
-
-        <!-- MENU -->
-
-        <div class="grid md:grid-cols-2 gap-6 mt-8">
-
-            <a href="{{ route('peminjaman.index') }}">
-
-                <div class="bg-white rounded-2xl shadow p-8 hover:shadow-lg">
-
-                    <h2 class="text-xl font-bold text-indigo-600">
-
-                        Riwayat Peminjaman
-
-                    </h2>
-
-                    <p class="text-gray-500 mt-2">
-
-                        Lihat semua peminjaman yang pernah Anda lakukan.
-
-                    </p>
-
-                </div>
-
-            </a>
+            </div>
 
 
 
 
 
-            <a href="{{ route('profile.edit') }}">
+            <!-- MENU -->
 
-                <div class="bg-white rounded-2xl shadow p-8 hover:shadow-lg">
+            <div class="grid md:grid-cols-2 gap-6 mt-8">
 
-                    <h2 class="text-xl font-bold text-green-600">
+                <a href="{{ route('peminjaman.index') }}">
 
-                        Profil
+                    <div class="bg-white rounded-2xl shadow p-8 hover:shadow-lg">
 
-                    </h2>
+                        <h2 class="text-xl font-bold text-indigo-600">
 
-                    <p class="text-gray-500 mt-2">
+                            Riwayat Peminjaman
 
-                        Edit profil akun Anda.
+                        </h2>
 
-                    </p>
+                        <p class="text-gray-500 mt-2">
 
-                </div>
+                            Lihat semua peminjaman yang pernah Anda lakukan.
 
-            </a>
+                        </p>
 
-        </div>
+                    </div>
 
-    </main>
+                </a>
 
-</div>
+
+
+
+
+                <a href="{{ route('profile.edit') }}">
+
+                    <div class="bg-white rounded-2xl shadow p-8 hover:shadow-lg">
+
+                        <h2 class="text-xl font-bold text-green-600">
+
+                            Profil
+
+                        </h2>
+
+                        <p class="text-gray-500 mt-2">
+
+                            Edit profil akun Anda.
+
+                        </p>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </main>
+
+    </div>
 
 </x-app-layout>

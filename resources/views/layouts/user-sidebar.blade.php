@@ -15,30 +15,30 @@
     <nav class="px-5 space-y-2">
 
         <a href="{{ route('user.dashboard') }}"
-           class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-indigo-100">
+            class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-indigo-100">
 
-            🏠 Dashboard
-
-        </a>
-
-        <a href="{{ route('peminjaman.index') }}"
-           class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-indigo-100">
-
-            📦 Mulai Peminjaman
+            Dashboard
 
         </a>
 
         <a href="{{ route('peminjaman.index') }}"
-           class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-indigo-100">
+            class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-indigo-100">
 
-            📜 Riwayat Peminjaman
+            Mulai Peminjaman
+
+        </a>
+
+        <a href="{{ route('peminjaman.index') }}"
+            class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-indigo-100">
+
+            Riwayat Peminjaman
 
         </a>
 
         <a href="{{ route('profile.edit') }}"
-           class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-indigo-100">
+            class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-indigo-100">
 
-            👤 Profil
+            Profil
 
         </a>
 
@@ -47,7 +47,7 @@
 
             <button class="w-full text-left px-4 py-3 text-red-500 hover:bg-red-50 rounded-xl">
 
-                🚪 Logout
+                Logout
 
             </button>
 

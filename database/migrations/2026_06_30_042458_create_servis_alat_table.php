@@ -13,48 +13,47 @@ return new class extends Migration
     {
         Schema::create('servis_alat', function (Blueprint $table) {
 
-        $table->id();
+            $table->id();
 
 
-        $table->foreignId('alat_id')
-        ->constrained('alat_laboratorium')
-        ->onDelete('cascade');
+            $table->foreignId('alat_id')
+                ->constrained('alat_laboratorium')
+                ->onDelete('cascade');
 
 
-        $table->date('tanggal_servis');
+            $table->date('tanggal_servis');
 
 
-        $table->date('tanggal_selesai')
-        ->nullable();
+            $table->date('tanggal_selesai')
+                ->nullable();
 
 
-        $table->enum('status',[
-            'menunggu',
-            'proses',
-            'selesai'
-        ])
-        ->default('menunggu');
-
-
-
-        $table->text('kerusakan')
-        ->nullable();
+            $table->enum('status', [
+                'menunggu',
+                'proses',
+                'selesai'
+            ])
+                ->default('menunggu');
 
 
 
-        $table->text('tindakan')
-        ->nullable();
+            $table->text('kerusakan')
+                ->nullable();
 
 
 
-        $table->string('foto')
-        ->nullable();
+            $table->text('tindakan')
+                ->nullable();
 
 
 
-        $table->timestamps();
+            $table->string('foto')
+                ->nullable();
 
-    });
+
+
+            $table->timestamps();
+        });
     }
 
     /**

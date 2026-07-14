@@ -10,41 +10,38 @@ class ServisAlat extends Model
 {
 
 
-protected $table = 'servis_alat';
+    protected $table = 'servis_alat';
 
 
 
-protected $fillable = [
+    protected $fillable = [
 
-    'alat_id',
+        'alat_id',
 
-    'tanggal_servis',
+        'tanggal_servis',
 
-    'tanggal_selesai',
+        'tanggal_selesai',
 
-    'status',
+        'status',
 
-    'kerusakan',
+        'kerusakan',
 
-    'tindakan',
+        'tindakan',
 
-    'foto'
+        'foto'
 
-];
-
-
+    ];
 
 
 
-public function alat()
-{
-
-    return $this->belongsTo(
-        AlatLaboratorium::class,
-        'alat_id'
-    );
-
-}
 
 
+    public function alat()
+    {
+
+        return $this->belongsTo(
+            AlatLaboratorium::class,
+            'alat_id'
+        );
+    }
 }

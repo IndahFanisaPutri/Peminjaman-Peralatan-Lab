@@ -13,9 +13,7 @@ return new class extends Migration
             Schema::table('alat_laboratorium', function (Blueprint $table) {
 
                 $table->string('foto')->nullable()->after('deskripsi');
-
             });
-
         }
     }
 
@@ -26,9 +24,7 @@ return new class extends Migration
             Schema::table('alat_laboratorium', function (Blueprint $table) {
 
                 $table->dropColumn('foto');
-
             });
-
         }
     }
 };

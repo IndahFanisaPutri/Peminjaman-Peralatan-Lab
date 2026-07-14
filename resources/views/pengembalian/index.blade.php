@@ -1,174 +1,174 @@
 <x-app-layout>
 
-@include('layouts.user-navbar')
+    @include('layouts.user-navbar')
 
-<div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen bg-gray-100">
 
-    <div class="max-w-7xl mx-auto py-8 px-6">
+        <div class="max-w-7xl mx-auto py-8 px-6">
 
-        {{-- Header --}}
-        <div class="bg-white rounded-2xl shadow p-8 mb-8 flex justify-between items-center">
+            {{-- Header --}}
+            <div class="bg-white rounded-2xl shadow p-8 mb-8 flex justify-between items-center">
 
-            <div>
+                <div>
 
-                <h1 class="text-3xl font-bold text-indigo-600">
-                    Pengembalian Alat
-                </h1>
+                    <h1 class="text-3xl font-bold text-indigo-600">
+                        Pengembalian Alat
+                    </h1>
 
-                <p class="text-gray-500 mt-2">
-                    Lihat status pengembalian serta informasi.
-                </p>
+                    <p class="text-gray-500 mt-2">
+                        Lihat status pengembalian serta informasi.
+                    </p>
+
+                </div>
+
+
 
             </div>
 
-        
+            @if(session('success'))
 
-        </div>
+            <div class="bg-green-100 border border-green-300 text-green-700 px-5 py-4 rounded-xl mb-6">
 
-        @if(session('success'))
+                {{ session('success') }}
 
-        <div class="bg-green-100 border border-green-300 text-green-700 px-5 py-4 rounded-xl mb-6">
+            </div>
 
-            {{ session('success') }}
+            @endif
 
-        </div>
+            <div class="bg-white rounded-2xl shadow overflow-hidden">
 
-        @endif
+                <table class="w-full">
 
-        <div class="bg-white rounded-2xl shadow overflow-hidden">
+                    <thead class="bg-gray-100">
 
-            <table class="w-full">
+                        <tr>
 
-                <thead class="bg-gray-100">
+                            <th class="px-6 py-4 text-left">Tanggal Pinjam</th>
 
-                    <tr>
+                            <th class="px-6 py-4 text-left">Nama Alat</th>
 
-                        <th class="px-6 py-4 text-left">Tanggal Pinjam</th>
+                            <th class="px-6 py-4 text-center">Jumlah</th>
 
-                        <th class="px-6 py-4 text-left">Nama Alat</th>
+                            <th class="px-6 py-4 text-center">Status</th>
 
-                        <th class="px-6 py-4 text-center">Jumlah</th>
+                            <th class="px-6 py-4 text-center">Tanggal Kembali</th>
 
-                        <th class="px-6 py-4 text-center">Status</th>
+                        </tr>
 
-                        <th class="px-6 py-4 text-center">Tanggal Kembali</th>
+                    </thead>
 
-                    </tr>
+                    <tbody>
 
-                </thead>
+                        @forelse($pengembalian as $item)
 
-                <tbody>
+                        <tr class="border-b hover:bg-gray-50">
 
-                @forelse($pengembalian as $item)
+                            <td class="px-6 py-4">
 
-                    <tr class="border-b hover:bg-gray-50">
+                                {{ $item->tanggal_pinjam }}
 
-                        <td class="px-6 py-4">
+                            </td>
 
-                            {{ $item->tanggal_pinjam }}
+                            <td class="px-6 py-4">
 
-                        </td>
+                                {{ $item->alat->nama_alat }}
 
-                        <td class="px-6 py-4">
+                            </td>
 
-                            {{ $item->alat->nama_alat }}
+                            <td class="px-6 py-4 text-center">
 
-                        </td>
+                                {{ $item->jumlah_pinjam }}
 
-                        <td class="px-6 py-4 text-center">
+                            </td>
 
-                            {{ $item->jumlah_pinjam }}
+                            <td class="px-6 py-4 text-center">
 
-                        </td>
-
-                        <td class="px-6 py-4 text-center">
-
-                            @switch($item->status)
+                                @switch($item->status)
 
                                 @case('disetujui')
 
-                                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full">
+                                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full">
 
-                                        Sedang Dipinjam
+                                    Sedang Dipinjam
 
-                                    </span>
+                                </span>
 
-                                    @break
+                                @break
 
                                 @case('menunggu_pengembalian')
 
-                                    <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">
+                                <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">
 
-                                        Menunggu Verifikasi
+                                    Menunggu Verifikasi
 
-                                    </span>
+                                </span>
 
-                                    @break
+                                @break
 
                                 @case('dikembalikan')
 
-                                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full">
+                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full">
 
-                                        Dikembalikan
+                                    Dikembalikan
 
-                                    </span>
+                                </span>
 
-                                    @break
+                                @break
 
                                 @case('ditolak')
 
-                                    <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full">
+                                <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full">
 
-                                        Ditolak
+                                    Ditolak
 
-                                    </span>
+                                </span>
 
-                                    @break
+                                @break
 
-                            @endswitch
+                                @endswitch
 
-                        </td>
+                            </td>
 
-                        <td class="px-6 py-4 text-center">
+                            <td class="px-6 py-4 text-center">
 
-                            {{ $item->tanggal_kembali ?? '-' }}
+                                {{ $item->tanggal_kembali ?? '-' }}
 
-                        </td>
+                            </td>
 
-                    </tr>
+                        </tr>
 
-                @empty
+                        @empty
 
-                    <tr>
+                        <tr>
 
-                        <td colspan="6">
+                            <td colspan="6">
 
-                            <div class="py-16 text-center">
+                                <div class="py-16 text-center">
 
-    
 
-                                <p class="mt-2 text-gray-500">
 
-                                    Silakan ajukan pengembalian setelah peminjaman disetujui.
+                                    <p class="mt-2 text-gray-500">
 
-                                </p>
+                                        Silakan ajukan pengembalian setelah peminjaman disetujui.
 
-                            </div>
+                                    </p>
 
-                        </td>
+                                </div>
 
-                    </tr>
+                            </td>
 
-                @endforelse
+                        </tr>
 
-                </tbody>
+                        @endforelse
 
-            </table>
+                    </tbody>
+
+                </table>
+
+            </div>
 
         </div>
 
     </div>
-
-</div>
 
 </x-app-layout>

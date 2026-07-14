@@ -12,7 +12,7 @@ class AlatLaboratoriumController extends Controller
      */
     public function index()
     {
-         $alat = AlatLaboratorium::all();
+        $alat = AlatLaboratorium::all();
         return view('alat.index', compact('alat'));
     }
 
@@ -72,8 +72,8 @@ class AlatLaboratoriumController extends Controller
      */
     public function show(string $id)
     {
-         $alat = AlatLaboratorium::findOrFail($id);
-         return view('alat.show', compact('alat'));
+        $alat = AlatLaboratorium::findOrFail($id);
+        return view('alat.show', compact('alat'));
     }
 
     /**
@@ -81,14 +81,14 @@ class AlatLaboratoriumController extends Controller
      */
     public function edit(string $id)
     {
-         $alat = AlatLaboratorium::findOrFail($id);
+        $alat = AlatLaboratorium::findOrFail($id);
         return view('alat.edit', compact('alat'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-   public function update(Request $request, string $id)
+    public function update(Request $request, string $id)
     {
         $request->validate([
             'kode_alat' => 'required',
@@ -112,7 +112,6 @@ class AlatLaboratoriumController extends Controller
             $foto = $request
                 ->file('foto')
                 ->store('foto_alat', 'public');
-
         }
 
         $alat->update([
@@ -151,8 +150,8 @@ class AlatLaboratoriumController extends Controller
      */
     public function destroy(string $id)
     {
-         $alat = AlatLaboratorium::findOrFail($id);
-         $alat->delete();
+        $alat = AlatLaboratorium::findOrFail($id);
+        $alat->delete();
 
         return redirect()->route('alat.index')
             ->with('success', 'Data berhasil dihapus');

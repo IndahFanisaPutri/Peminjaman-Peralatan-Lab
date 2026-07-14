@@ -1,17 +1,17 @@
 <x-app-layout>
 
-<div class="min-h-screen bg-gray-100 flex">
+    <div class="min-h-screen bg-gray-100 flex">
 
-    {{-- Sidebar --}}
-    @include('layouts.user-sidebar')
+        {{-- Sidebar --}}
+        @include('layouts.user-sidebar')
 
-    {{-- Content --}}
-    <main class="flex-1 ml-64 p-6">
+        {{-- Content --}}
+        <main class="flex-1 ml-64 p-6">
 
-        {{ $slot }}
+            {{ $slot }}
 
-    </main>
+        </main>
 
-</div>
+    </div>
 
 </x-app-layout>

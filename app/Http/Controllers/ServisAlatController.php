@@ -13,185 +13,171 @@ class ServisAlatController extends Controller
 {
 
 
-public function index()
-{
+    public function index()
+    {
 
 
-$servis =
-ServisAlat::with('alat')->get();
+        $servis =
+            ServisAlat::with('alat')->get();
 
 
 
-return view(
-'servis.index',
-compact('servis')
-);
+        return view(
+            'servis.index',
+            compact('servis')
+        );
+    }
 
 
-}
 
 
 
+    public function create()
+    {
 
 
-public function create()
-{
+        $alat =
+            AlatLaboratorium::all();
 
 
-$alat =
-AlatLaboratorium::all();
+        return view(
+            'servis.create',
+            compact('alat')
+        );
+    }
 
 
-return view(
-'servis.create',
-compact('alat')
-);
 
 
-}
 
 
 
+    public function store(Request $request)
+    {
 
 
+        $request->validate([
 
 
-public function store(Request $request)
-{
+            'alat_id' => 'required',
 
+            'tanggal_servis' => 'required|date',
 
-$request->validate([
+            'foto' => 'image|mimes:jpg,jpeg,png|max:2048'
 
 
-'alat_id'=>'required',
+        ]);
 
-'tanggal_servis'=>'required|date',
 
-'foto'=>'image|mimes:jpg,jpeg,png|max:2048'
 
 
-]);
 
 
+        $foto = null;
 
 
 
+        if ($request->hasFile('foto')) {
 
-$foto = null;
+            $foto =
+                $request->file('foto')
+                ->store('foto_servis', 'public');
+        }
 
 
 
-if($request->hasFile('foto'))
-{
 
-$foto =
-$request->file('foto')
-->store('foto_servis','public');
 
-}
 
+        ServisAlat::create([
 
 
+            'alat_id' => $request->alat_id,
 
 
+            'tanggal_servis' => $request->tanggal_servis,
 
-ServisAlat::create([
 
+            'kerusakan' => $request->kerusakan,
 
-'alat_id'=>$request->alat_id,
 
+            'tindakan' => $request->tindakan,
 
-'tanggal_servis'=>$request->tanggal_servis,
 
+            'foto' => $foto
 
-'kerusakan'=>$request->kerusakan,
 
+        ]);
 
-'tindakan'=>$request->tindakan,
 
 
-'foto'=>$foto
 
 
-]);
 
+        return redirect()
 
+            ->route('servis.index')
 
+            ->with(
+                'success',
+                'Data servis berhasil ditambahkan'
+            );
+    }
 
 
 
-return redirect()
 
-->route('servis.index')
 
-->with(
-'success',
-'Data servis berhasil ditambahkan'
-);
 
+    public function update(Request $request, $id)
+    {
 
-}
 
+        $servis =
+            ServisAlat::findOrFail($id);
 
 
 
+        $servis->update([
 
 
-public function update(Request $request,$id)
-{
+            'status' => $request->status,
 
 
-$servis =
-ServisAlat::findOrFail($id);
+            'tanggal_selesai' => $request->tanggal_selesai,
 
 
+            'tindakan' => $request->tindakan
 
-$servis->update([
 
+        ]);
 
-'status'=>$request->status,
 
 
-'tanggal_selesai'=>$request->tanggal_selesai,
 
+        return back()
 
-'tindakan'=>$request->tindakan
+            ->with(
+                'success',
+                'Status servis diperbarui'
+            );
+    }
 
 
-]);
 
 
 
 
-return back()
 
-->with(
-'success',
-'Status servis diperbarui'
-);
+    public function destroy($id)
+    {
 
 
-}
+        ServisAlat::findOrFail($id)
+            ->delete();
 
 
 
-
-
-
-
-public function destroy($id)
-{
-
-
-ServisAlat::findOrFail($id)
-->delete();
-
-
-
-return back();
-
-}
-
-
-
+        return back();
+    }
 }

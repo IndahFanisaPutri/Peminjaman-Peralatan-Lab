@@ -21,24 +21,24 @@
             <div class="flex items-center space-x-8">
 
                 <a href="{{ route('user.dashboard') }}"
-                   class="text-gray-600 hover:text-indigo-600 font-semibold transition duration-200">
+                    class="text-gray-600 hover:text-indigo-600 font-semibold transition duration-200">
                     Dashboard
                 </a>
 
                 <a href="{{ route('peminjaman.index') }}"
-                   class="text-gray-600 hover:text-indigo-600 font-semibold transition duration-200">
+                    class="text-gray-600 hover:text-indigo-600 font-semibold transition duration-200">
                     Peminjaman
                 </a>
 
                 <a href="{{ route('pengembalian.index') }}"
                     class="text-gray-600 hover:text-indigo-600 font-semibold transition duration-200">
                     Pengembalian
-                    </a>
+                </a>
 
                 <a href="{{ route('profile.edit') }}"
                     class="text-gray-600 hover:text-indigo-600 font-medium">
-                        Profil
-                    </a>
+                    Profil
+                </a>
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

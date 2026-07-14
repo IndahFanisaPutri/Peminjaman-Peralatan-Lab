@@ -1,28 +1,28 @@
 <x-app-layout>
 
-<div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen bg-gray-100">
 
-    {{-- Sidebar --}}
-    @include('layouts.admin-sidebar')
+        {{-- Sidebar --}}
+        @include('layouts.admin-sidebar')
 
-    {{-- Content --}}
-    <main class="ml-64 p-8">
+        {{-- Content --}}
+        <main class="ml-64 p-8">
 
-        {{-- Header --}}
-        <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+            {{-- Header --}}
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
 
-            <h1 class="text-3xl font-bold text-gray-800">
-                Data Pengembalian Alat
-            </h1>
+                <h1 class="text-3xl font-bold text-gray-800">
+                    Data Pengembalian Alat
+                </h1>
 
-            <p class="text-gray-500 mt-2">
-                Kelola seluruh pengajuan pengembalian alat laboratorium.
-            </p>
+                <p class="text-gray-500 mt-2">
+                    Kelola seluruh pengajuan pengembalian alat laboratorium.
+                </p>
 
-        </div>
+            </div>
 
-        {{-- Alert --}}
-        @if(session('success'))
+            {{-- Alert --}}
+            @if(session('success'))
 
             <div class="bg-green-100 border border-green-300 text-green-700 px-5 py-4 rounded-lg mb-6">
 
@@ -30,135 +30,135 @@
 
             </div>
 
-        @endif
+            @endif
 
-        {{-- Table --}}
-        <div class="bg-white rounded-xl shadow overflow-hidden">
+            {{-- Table --}}
+            <div class="bg-white rounded-xl shadow overflow-hidden">
 
-            <table class="w-full">
+                <table class="w-full">
 
-                <thead class="bg-gray-50 border-b">
+                    <thead class="bg-gray-50 border-b">
 
-                    <tr>
+                        <tr>
 
-                        <th class="p-4 text-left font-semibold text-gray-700">
-                            No
-                        </th>
+                            <th class="p-4 text-left font-semibold text-gray-700">
+                                No
+                            </th>
 
-                        <th class="p-4 text-left font-semibold text-gray-700">
-                            Nama Peminjam
-                        </th>
+                            <th class="p-4 text-left font-semibold text-gray-700">
+                                Nama Peminjam
+                            </th>
 
-                        <th class="p-4 text-left font-semibold text-gray-700">
-                            Nama Barang
-                        </th>
+                            <th class="p-4 text-left font-semibold text-gray-700">
+                                Nama Barang
+                            </th>
 
-                        <th class="p-4 text-left font-semibold text-gray-700">
-                            Jumlah
-                        </th>
+                            <th class="p-4 text-left font-semibold text-gray-700">
+                                Jumlah
+                            </th>
 
-                        <th class="p-4 text-left font-semibold text-gray-700">
-                            Tanggal Pengembalian
-                        </th>
+                            <th class="p-4 text-left font-semibold text-gray-700">
+                                Tanggal Pengembalian
+                            </th>
 
-                        <th class="p-4 text-left font-semibold text-gray-700">
-                            Kondisi
-                        </th>
+                            <th class="p-4 text-left font-semibold text-gray-700">
+                                Kondisi
+                            </th>
 
-                        <th class="p-4 text-left font-semibold text-gray-700">
-                            Status
-                        </th>
+                            <th class="p-4 text-left font-semibold text-gray-700">
+                                Status
+                            </th>
 
-                        <th class="p-4 text-left font-semibold text-gray-700">
-                            Aksi
-                        </th>
+                            <th class="p-4 text-left font-semibold text-gray-700">
+                                Aksi
+                            </th>
 
-                    </tr>
+                        </tr>
 
-                </thead>
+                    </thead>
 
-                <tbody>
+                    <tbody>
 
-                @forelse($pengembalian as $item)
+                        @forelse($pengembalian as $item)
 
-                    <tr class="border-b hover:bg-gray-50 transition">
+                        <tr class="border-b hover:bg-gray-50 transition">
 
-                        <td class="p-4 text-gray-700">
-                            {{ $loop->iteration }}
-                        </td>
+                            <td class="p-4 text-gray-700">
+                                {{ $loop->iteration }}
+                            </td>
 
-                        <td class="p-4">
+                            <td class="p-4">
 
-                            <span class="font-medium text-gray-800">
+                                <span class="font-medium text-gray-800">
 
-                                {{ $item->nama_peminjam }}
+                                    {{ $item->nama_peminjam }}
 
-                            </span>
+                                </span>
 
-                        </td>
+                            </td>
 
-                        <td class="p-4">
+                            <td class="p-4">
 
-                            <span class="font-semibold text-gray-900">
+                                <span class="font-semibold text-gray-900">
 
-                                {{ $item->alat->nama_alat }}
+                                    {{ $item->alat->nama_alat }}
 
-                            </span>
+                                </span>
 
-                        </td>
+                            </td>
 
-                        <td class="p-4 text-gray-700">
+                            <td class="p-4 text-gray-700">
 
-                            {{ $item->jumlah_pinjam }}
+                                {{ $item->jumlah_pinjam }}
 
-                        </td>
+                            </td>
 
-                        <td class="p-4 text-gray-700">
+                            <td class="p-4 text-gray-700">
 
-                            @if($item->tanggal_kembali)
+                                @if($item->tanggal_kembali)
 
                                 {{ \Carbon\Carbon::parse($item->tanggal_kembali)->format('d M Y') }}
 
-                            @else
+                                @else
 
                                 -
 
-                            @endif
+                                @endif
 
-                        </td>
+                            </td>
 
-                        {{-- Kondisi --}}
-                        <td class="p-4">
+                            {{-- Kondisi --}}
+                            <td class="p-4">
 
-                            @if($item->kondisi_kembali)
+                                @if($item->kondisi_kembali)
 
                                 @if($item->kondisi_kembali=='baik')
 
-                                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
+                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
 
-                                        Baik
+                                    Baik
 
-                                    </span>
+                                </span>
 
                                 @elseif($item->kondisi_kembali=='rusak ringan')
 
-                                    <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-medium">
+                                <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-medium">
 
-                                        Rusak Ringan
+                                    Rusak Ringan
 
-                                    </span>
+                                </span>
 
                                 @elseif($item->kondisi_kembali=='rusak berat')
 
-                                    <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium">
+                                <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium">
 
-                                        Rusak Berat
+                                    Rusak Berat
 
-                                    </span>
+                                </span>
 
                                 @endif
 
-                            @else
+                                @else
 
                                 <span class="text-gray-400 italic">
 
@@ -166,14 +166,14 @@
 
                                 </span>
 
-                            @endif
+                                @endif
 
-                        </td>
+                            </td>
 
-                        {{-- Status --}}
-                        <td class="p-4">
+                            {{-- Status --}}
+                            <td class="p-4">
 
-                            @if($item->status=='menunggu_pengembalian')
+                                @if($item->status=='menunggu_pengembalian')
 
                                 <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-medium">
 
@@ -181,7 +181,7 @@
 
                                 </span>
 
-                            @elseif($item->status=='dikembalikan')
+                                @elseif($item->status=='dikembalikan')
 
                                 <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
 
@@ -189,7 +189,7 @@
 
                                 </span>
 
-                            @elseif($item->status=='disetujui')
+                                @elseif($item->status=='disetujui')
 
                                 <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
 
@@ -197,7 +197,7 @@
 
                                 </span>
 
-                            @elseif($item->status=='ditolak')
+                                @elseif($item->status=='ditolak')
 
                                 <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-medium">
 
@@ -205,45 +205,45 @@
 
                                 </span>
 
-                            @endif
+                                @endif
 
-                        </td>
+                            </td>
 
-                        <td class="p-4">
+                            <td class="p-4">
 
-                            <a href="{{ route('admin.pengembalian.show',$item->id) }}"
-                               class="inline-flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition">
+                                <a href="{{ route('admin.pengembalian.show',$item->id) }}"
+                                    class="inline-flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition">
 
-                                Detail
+                                    Detail
 
-                            </a>
+                                </a>
 
-                        </td>
+                            </td>
 
-                    </tr>
+                        </tr>
 
-                @empty
+                        @empty
 
-                    <tr>
+                        <tr>
 
-                        <td colspan="8" class="text-center py-10 text-gray-400">
+                            <td colspan="8" class="text-center py-10 text-gray-400">
 
-                            Belum ada data pengembalian.
+                                Belum ada data pengembalian.
 
-                        </td>
+                            </td>
 
-                    </tr>
+                        </tr>
 
-                @endforelse
+                        @endforelse
 
-                </tbody>
+                    </tbody>
 
-            </table>
+                </table>
 
-        </div>
+            </div>
 
-    </main>
+        </main>
 
-</div>
+    </div>
 
 </x-app-layout>
