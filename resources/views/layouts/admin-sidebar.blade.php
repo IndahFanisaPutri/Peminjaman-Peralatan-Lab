@@ -14,7 +14,7 @@ class="fixed top-0 left-0 w-64 h-screen bg-white shadow-lg border-r z-50">
 
             <h2 class="font-bold text-xl">
 
-                SilaLab
+                SILAB
 
             </h2>
 
@@ -34,7 +34,7 @@ class="fixed top-0 left-0 w-64 h-screen bg-white shadow-lg border-r z-50">
         href="{{ route('dashboard') }}"
         class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-indigo-100 mb-2">
 
-            🏠 Dashboard
+            Dashboard
 
         </a>
 
@@ -42,7 +42,7 @@ class="fixed top-0 left-0 w-64 h-screen bg-white shadow-lg border-r z-50">
         href="{{ route('alat.index') }}"
         class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-indigo-100 mb-2">
 
-            🧪 Data Peralatan
+            Data Peralatan
 
         </a>
 
@@ -50,7 +50,7 @@ class="fixed top-0 left-0 w-64 h-screen bg-white shadow-lg border-r z-50">
         href="{{ route('peminjaman.index') }}"
         class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-indigo-100 mb-2">
 
-            📦 Data Peminjaman
+            Data Peminjaman
 
         </a>
 
@@ -58,7 +58,7 @@ class="fixed top-0 left-0 w-64 h-screen bg-white shadow-lg border-r z-50">
         href="{{ route('admin.pengembalian.index') }}"
         class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-indigo-100 mb-2">
 
-            🔄 Pengembalian
+            Pengembalian
 
         </a>
 
@@ -66,7 +66,7 @@ class="fixed top-0 left-0 w-64 h-screen bg-white shadow-lg border-r z-50">
         href="{{ route('servis.index') }}"
         class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-indigo-100 mb-2">
 
-            🔧 Servis Peralatan
+            Servis Peralatan
 
         </a>
 
@@ -74,7 +74,7 @@ class="fixed top-0 left-0 w-64 h-screen bg-white shadow-lg border-r z-50">
         href="{{ route('laporan.index') }}"
         class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-indigo-100 mb-2">
 
-            📊 Laporan
+            Laporan
 
         </a>
 

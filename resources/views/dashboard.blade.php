@@ -17,7 +17,7 @@
         </h1>
 
         <p class="text-gray-500 mt-1">
-            Selamat datang kembali,
+            Selamat datang kembali
             <span class="font-semibold text-indigo-600">
                 {{ auth()->user()->name }}
             </span>
@@ -95,9 +95,7 @@
             <a href="{{ route('admin.profile') }}"
                 class="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 transition">
 
-                👤
-
-                <span>Edit Profil</span>
+                <span>Profil</span>
 
             </a>
 
@@ -108,8 +106,6 @@
 
                 <button
                     class="w-full text-left flex items-center gap-3 px-4 py-3 hover:bg-red-50 text-red-600 transition">
-
-                    🚪
 
                     <span>Logout</span>
 
@@ -127,11 +123,11 @@
         <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 text-white shadow">
 
             <h2 class="text-3xl font-bold">
-                Selamat Datang Admin 👋
+                Selamat Datang Admin 
             </h2>
 
             <p class="mt-3 opacity-90">
-                Kelola seluruh peminjaman laboratorium melalui dashboard ini.
+                Sistem Informasi Peminjaman Peralatan Laboratorium.
             </p>
 
         </div>
@@ -197,7 +193,7 @@
 
     <h2 class="text-2xl font-bold text-gray-800">
 
-        Modul Manajemen Sistem Laboratorium
+        Manajemen Sistem Laboratorium
 
     </h2>
 
@@ -220,9 +216,7 @@ class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition duration-300">
 
         <div>
 
-            <p class="text-sm text-gray-500">
-                Modul
-            </p>
+            
 
             <h2 class="text-xl font-bold text-gray-800 mt-1">
                 Data Peralatan
@@ -231,7 +225,7 @@ class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition duration-300">
         </div>
 
         <div class="text-5xl">
-            🧪
+            
         </div>
 
     </div>
@@ -245,7 +239,7 @@ class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition duration-300">
 
     <div class="mt-5 text-indigo-600 font-semibold">
 
-        Buka Modul →
+        Lanjutkan →
 
     </div>
 
@@ -258,9 +252,7 @@ class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition duration-300">
 
         <div>
 
-            <p class="text-sm text-gray-500">
-                Modul
-            </p>
+            
 
             <h2 class="text-xl font-bold text-gray-800 mt-1">
                 Data Peminjaman
@@ -269,7 +261,7 @@ class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition duration-300">
         </div>
 
         <div class="text-5xl">
-            📦
+            
         </div>
 
     </div>
@@ -283,7 +275,7 @@ class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition duration-300">
 
     <div class="mt-5 text-indigo-600 font-semibold">
 
-        Buka Modul →
+        Lanjutkan →
 
     </div>
 
@@ -296,9 +288,7 @@ class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition duration-300">
 
         <div>
 
-            <p class="text-sm text-gray-500">
-                Modul
-            </p>
+
 
             <h2 class="text-xl font-bold text-gray-800 mt-1">
                 Servis Peralatan
@@ -307,7 +297,7 @@ class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition duration-300">
         </div>
 
         <div class="text-5xl">
-            🔧
+            
         </div>
 
     </div>
@@ -321,7 +311,7 @@ class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition duration-300">
 
     <div class="mt-5 text-indigo-600 font-semibold">
 
-        Buka Modul →
+        Lanjutkan →
 
     </div>
 
@@ -334,9 +324,6 @@ class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition duration-300">
 
         <div>
 
-            <p class="text-sm text-gray-500">
-                Modul
-            </p>
 
             <h2 class="text-xl font-bold text-gray-800 mt-1">
                 Laporan Sistem
@@ -345,7 +332,7 @@ class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition duration-300">
         </div>
 
         <div class="text-5xl">
-            📊
+            
         </div>
 
     </div>
@@ -359,7 +346,7 @@ class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition duration-300">
 
     <div class="mt-5 text-indigo-600 font-semibold">
 
-        Buka Modul →
+        Lanjutkan →
 
     </div>
 
@@ -396,9 +383,7 @@ class="bg-white rounded-xl shadow p-6 hover:shadow-xl transition duration-300">
 
                     <div class="w-14 h-14 rounded-xl bg-orange-100 flex items-center justify-center text-2xl">
 
-                        🧪
-
-                    </div>
+                </div>
 
                     <div>
 

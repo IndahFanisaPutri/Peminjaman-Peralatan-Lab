@@ -7,8 +7,9 @@
         <!-- Header -->
         <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-center text-white p-8">
 
+            
             <h1 class="text-3xl font-bold">
-                SilaLab
+                SILAB
             </h1>
 
             <p class="mt-2">
@@ -83,16 +84,16 @@
                         class="w-full border rounded-xl p-3 mt-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                         required>
 
-                        <option value="">-- Pilih Role --</option>
+                        <option value="">-- Pilih --</option>
 
                         <option value="user"
                             {{ old('role') == 'user' ? 'selected' : '' }}>
-                            👤 User
+                            User
                         </option>
 
                         <option value="admin"
                             {{ old('role') == 'admin' ? 'selected' : '' }}>
-                            👨‍💼 Admin
+                            Admin
                         </option>
 
                     </select>

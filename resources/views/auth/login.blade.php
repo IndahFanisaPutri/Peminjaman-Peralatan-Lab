@@ -23,12 +23,12 @@ S
 
 
 <h1 class="mt-5 text-3xl font-bold">
-SilaLab
+SILAB
 </h1>
 
 
 <p class="mt-2">
-Sistem Peminjaman Laboratorium
+Sistem Informasi Peminjaman Barang Laboratorium
 </p>
 
 
@@ -141,57 +141,30 @@ Ingat saya
 
 
 <button
-
 class="mt-6 w-full py-3 rounded-xl
-
 bg-gradient-to-r from-indigo-600 to-purple-600
-
 text-white font-bold text-lg">
-
 
 ➜ Masuk
 
-
 </button>
-
-
-
 
 </form>
 
+<div class="text-center mt-4 text-sm">
 
+    Belum punya akun?
 
+    <a href="{{ route('register') }}"
+       class="text-indigo-600 font-bold hover:underline">
 
-</div>
+        Daftar sekarang
 
-
-
-
-
-<div class="text-center mt-6">
-
-
-Belum punya akun?
-
-
-<a href="{{route('register')}}"
-class="text-indigo-600 font-bold">
-
-
-Daftar sekarang
-
-
-</a>
-
+    </a>
 
 </div>
 
-
-
-
 </div>
-
-
 </div>
 
 

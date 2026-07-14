@@ -14,6 +14,11 @@ return new class extends Migration
         Schema::create('peminjaman_alat', function (Blueprint $table) {
             $table->id();
 
+            $table->foreignId('user_id')
+      ->constrained('users')
+      ->onDelete('cascade');
+
+
             $table->foreignId('alat_id')
                 ->constrained('alat_laboratorium')
                 ->onDelete('cascade');

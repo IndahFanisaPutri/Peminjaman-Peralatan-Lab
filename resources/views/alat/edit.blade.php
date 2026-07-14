@@ -2,57 +2,12 @@
 
 <div class="min-h-screen bg-gray-100 flex">
 
-    <!-- SIDEBAR -->
-    <aside class="w-64 bg-white shadow-lg hidden md:block">
-
-        <div class="h-20 flex items-center px-8">
-            <div class="text-3xl font-bold text-indigo-600">
-                S
-            </div>
-
-            <h1 class="ml-3 text-xl font-bold text-gray-700">
-                SilaLab
-            </h1>
-        </div>
-
-        <nav class="px-5 space-y-2">
-
-            <a href="{{ route('dashboard') }}"
-               class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100">
-                🏠 Dashboard
-            </a>
-
-            <a href="{{ route('alat.index') }}"
-               class="flex items-center gap-3 px-4 py-3 rounded-xl bg-indigo-100 text-indigo-600 font-semibold">
-                ⚙️ Data Alat
-            </a>
-
-            <a href="{{ route('peminjaman.index') }}"
-               class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100">
-                📦 Peminjaman
-            </a>
-
-            @if(auth()->user()->role=='admin')
-            <a href="{{ route('laporan.index') }}"
-               class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-100">
-                📊 Laporan
-            </a>
-            @endif
-
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-
-                <button class="w-full text-left px-4 py-3 text-red-500 hover:bg-red-50 rounded-xl">
-                    🚪 Logout
-                </button>
-            </form>
-
-        </nav>
-
-    </aside>
+    
+    {{-- Sidebar Admin --}}
+@include('layouts.admin-sidebar')
 
     <!-- CONTENT -->
-    <main class="flex-1 p-8">
+    <main class="ml-64 flex-1 p-8">
 
         <!-- HEADER -->
         <div class="bg-white rounded-xl shadow-sm p-6 mb-6">

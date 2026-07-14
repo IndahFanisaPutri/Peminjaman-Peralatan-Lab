@@ -83,7 +83,7 @@
 
                     <input
                         type="date"
-                        name="tanggal_service"
+                        name="tanggal_servis"
                         class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-indigo-500">
 
                 </div>

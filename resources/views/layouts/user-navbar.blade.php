@@ -12,7 +12,7 @@
                 </div>
 
                 <h1 class="text-2xl font-bold text-indigo-600">
-                    SilaLab
+                    SILAB
                 </h1>
 
             </div>

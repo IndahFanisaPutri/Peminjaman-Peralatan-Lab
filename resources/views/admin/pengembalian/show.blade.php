@@ -54,17 +54,17 @@
                 <div class="col-span-2">
                     <label class="font-semibold">Foto Barang</label>
 
-                    @if($pengembalian->foto)
+                    @if($pengembalian->alat && $pengembalian->alat->foto)
 
-                        <img
-                            src="{{ asset('storage/'.$pengembalian->foto) }}"
-                            class="w-64 rounded-lg mt-2">
+    <img
+        src="{{ asset('storage/' . $pengembalian->alat->foto) }}"
+        class="w-64 rounded-lg mt-2">
 
-                    @else
+@else
 
-                        <p>Tidak ada foto.</p>
+    <p>Tidak ada foto.</p>
 
-                    @endif
+@endif
 
                 </div>
 
@@ -81,6 +81,23 @@
 
                 <div class="mb-4">
 
+                    <div class="mb-4">
+
+    <label class="font-semibold">
+        Kondisi Barang
+    </label>
+
+    <select
+        name="kondisi_kembali"
+        class="w-full border rounded-lg mt-2">
+
+        <option value="baik">Baik</option>
+        <option value="cukup">Cukup</option>
+        <option value="rusak">Rusak</option>
+
+    </select>
+
+</div>
                     <label class="font-semibold">
                         Keputusan Admin
                     </label>

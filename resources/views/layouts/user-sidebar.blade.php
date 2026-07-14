@@ -7,7 +7,7 @@
         </div>
 
         <h1 class="ml-3 text-2xl font-bold text-gray-700">
-            SilaLab
+            SILAB
         </h1>
 
     </div>

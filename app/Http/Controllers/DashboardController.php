@@ -34,11 +34,20 @@ $alatHampirHabis = AlatLaboratorium::where('jumlah_tersedia', '<=', 3)
     ->limit(5)
     ->get();
 
+        // Pengingat Pengembalian milik user
+$pengingatPengembalian = PeminjamanAlat::with('alat')
+    ->where('user_id', $user->id)
+    ->where('status', 'disetujui')
+    ->orderBy('tanggal_rencana_kembali')
+    ->first();
+
+
         if ($user->role == 'user') {
 
             return view('dashboard-user', [
                 'jumlahAlat'   => $jumlahAlat,
                 'alatTersedia' => $alatTersedia,
+                'pengingatPengembalian' => $pengingatPengembalian,
             ]);
         }
 

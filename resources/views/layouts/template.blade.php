@@ -3,7 +3,7 @@
 
     <head>
         <title>
-            Sistem Peminjaman Peralatan Laboratorium
+            Sistem Informasi Peminjaman Peralatan Laboratorium
         </title>
 
         <style>
@@ -47,7 +47,7 @@
 
     <body>
         <div class="navbar">
-            <h3>Sistem Peminjaman Lab</h3>
+            <h3>Sistem Informasi Peminjaman Barang Lab</h3>
             <a href="{{ route('dashboard') }}">Dashboard</a>
             <a href="{{ route('alat.index') }}"> Alat</a>
             <a href="{{ route('peminjaman.index') }}">Peminjaman</a>

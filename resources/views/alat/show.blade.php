@@ -5,15 +5,17 @@
     <!-- ================= SIDEBAR ================= -->
     <aside class="w-64 bg-white shadow-lg hidden md:block">
 
-        <div class="h-20 flex items-center px-8">
+       <div class="h-20 flex items-center px-8">
             <div class="text-3xl font-bold text-indigo-600">
                 S
             </div>
 
             <h1 class="ml-3 text-xl font-bold text-gray-700">
-                SilaLab
+                SILAB
             </h1>
         </div>
+
+</div>
 
         <nav class="px-5 space-y-2">
 
